@@ -93,10 +93,10 @@ const VideoDescription = (props) => {
   return (
     <>
       <div className="w-full  mt-[17px] flex flex-col">
-        <span className="w-full font-bold text-[18px] h-[60px] md:h-[30px]  lg:h-[30px] px-[10px] lg:px-0 md:px-0 overflow-hidden ">
+        <span className="w-full font-bold text-[18px] h-[50px] md:h-[30px]  lg:h-[30px] px-[10px] lg:px-0 md:px-0 overflow-hidden ">
           {videoInfo?.snippet?.title}
         </span>
-        <div className="h-[85px] lg:h-[40px] md:h-[40px] items-center w-full flex flex-col lg:flex-row md:flex-row justify-between lg:justify-start md:justify-start  mt-[10px]">
+        <div className="h-[85px] lg:h-[40px] md:h-[40px] items-center w-full flex flex-col lg:flex-row md:flex-row justify-between lg:justify-start md:justify-start  mt-[15px] lg:mt-[10px] md:mt-[10px]">
           <div className="flex w-full lg:w-[50%] md:w-[50%] justify-between md:justify-start lg:justify-start items-center px-[10px] lg:px-0 md:px-0">
             <div className="flex justify-start items-center ">
               <img
@@ -123,65 +123,74 @@ const VideoDescription = (props) => {
               </div>
             </div>
             <div className="flex justify-center items-center">
-              <button className="flex justify-center items-center  border border-[#dcdcdc] bg-[white] rounded-full px-[14px] h-[35px]  ml-[20px] text-[13px] font-semibold hover:bg-[#dedede]">
+              <button className="flex justify-center items-center  border border-[#dcdcdc] bg-[white] rounded-full px-[14px] h-[35px]  ml-[20px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold hover:bg-[#dedede]">
                 Join
               </button>
-              <button className="flex justify-center items-center border-none  rounded-full px-[14px] h-[35px]  ml-[10px] text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
+              <button className="flex justify-center items-center border-none  rounded-full px-[14px] h-[35px]  ml-[10px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
                 Subscribe
               </button>
             </div>
           </div>
-          <div className="flex w-full lg:w-[50%] md:w-[50%]  justify-between md:justify-end lg:justify-end items-center px-[10px] lg:px-0 md:px-0">
-            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full px-[14px] h-[35px]  ml-[10px] text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
-              <BiSolidLike className="text-[19px] mr-[6px]" />
+          <div className="flex w-full lg:w-[50%] md:w-[50%]  justify-between md:justify-end lg:justify-end items-center px-[0px] lg:px-0 md:px-0">
+            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full px-[14px] h-[35px] ml-[7px] lg:ml-[10px] md:ml-[10px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
+              <BiSolidLike className="text-[16px] lg:text-[19px] md:text-[19px] mr-[6px]" />
               <span>
-                {videoInfo?.statistics?.likeCount / 1000000 != 0 ? (
-                  <>{videoInfo?.statistics?.likeCount / 1000000}M</>
-                ) : videoInfo?.statistics?.likeCount / 100000 != 0 ? (
-                  <>{videoInfo?.statistics?.likeCount / 100000}L</>
-                ) : videoInfo?.statistics?.likeCount / 1000 != 0 ? (
-                  <>{videoInfo?.statistics?.likeCount / 1000}K</>
+                {Math.floor(videoInfo?.statistics?.likeCount / 1000000) != 0 ? (
+                  <>
+                    {(videoInfo?.statistics?.likeCount / 1000000).toFixed(2)}M
+                  </>
+                ) : Math.floor(videoInfo?.statistics?.likeCount / 100000) !=
+                  0 ? (
+                  <>{(videoInfo?.statistics?.likeCount / 100000).toFixed(2)}L</>
+                ) : Math.floor(videoInfo?.statistics?.likeCount / 1000) != 0 ? (
+                  <>{(videoInfo?.statistics?.likeCount / 1000).toFixed(2)}K</>
                 ) : (
-                  <>{videoInfo?.statistics?.likeCount}</>
+                  <>{videoInfo?.statistics?.likeCount.toFixed(2)}</>
                 )}
                 {/* {videoInfo?.statistics?.likeCount} */}
               </span>
               <div className="h-[60%] mx-[6px] border border-[#dcdcdc]"></div>
-              <BiSolidDislike className="text-[19px]" />
+              <BiSolidDislike className="text-[16px] lg:text-[19px] md:text-[19px]" />
             </button>
 
-            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full px-[14px] h-[35px]  ml-[10px] text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
-              <IoMdShareAlt className="text-[19px] mr-[6px]" /> Share
+            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full px-[14px] h-[35px] ml-[7px] lg:ml-[10px] md:ml-[10px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
+              <IoMdShareAlt className="text-[16px] lg:text-[19px] md:text-[19px] mr-[6px]" />{" "}
+              Share
             </button>
-            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full px-[14px] h-[35px]  ml-[10px] text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
-              <BiSolidDownload className="text-[19px] mr-[6px]" /> Download
+            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full px-[14px] h-[35px] ml-[7px] lg:ml-[10px] md:ml-[10px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
+              <BiSolidDownload className="text-[16px] lg:text-[19px] md:text-[19px] mr-[6px]" />{" "}
+              Download
             </button>
-            <button className="hidden md:flex lg:flex justify-center items-center border-none whitespace-nowrap rounded-full  w-[35px] h-[35px]  ml-[10px] text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
-              <BiDotsVerticalRounded className="text-[19px] " />
+            <button className="flex md:flex lg:flex justify-center items-center border-none whitespace-nowrap rounded-full  w-[35px] h-[35px] ml-[7px] lg:ml-[10px] md:ml-[10px] text-[13px] font-semibold bg-[#f1f1f1] hover:bg-[#dedede]">
+              <BiDotsVerticalRounded className="text-[16px] lg:text-[19px] md:text-[19px] " />
             </button>
           </div>
         </div>
         {showDescription === false ? (
           <>
             <div
-              className="w-full p-[15px] h-[100px] lg:bg-[#f1f1f1] md:bg-[#f1f1f1] rounded-xl mt-[10px] text-ellipsis "
+              className="w-full  p-[10px] lg:p-[15px] md:p-[15px]  h-[95px] lg:bg-[#f1f1f1] md:bg-[#f1f1f1] rounded-xl mt-[10px] text-ellipsis "
               onClick={() => showMore()}
               style={{ transition: ".3s" }}
             >
-              <pre className="h-full p-[15px] lg:p-0 md:p-0 w-full rounded-xl bg-[#f1f1f1] lg:bg-transparent md:bg-transparent overflow-x-auto whitespace-pre-wrap break-words text-[12px] lg:text-[14px] md:text-[14px] leading-[18px] overflow-hidden">
-                {snippet.description}
-              </pre>
+              <div className="w-full h-full p-[10px] lg:p-0 md:p-0 bg-[#f1f1f1] lg:bg-transparent md:bg-transparent rounded-xl">
+                <pre className="h-full  w-full overflow-x-auto whitespace-pre-wrap break-words text-[12px] lg:text-[14px] md:text-[14px] leading-[18px] overflow-hidden">
+                  {snippet.description}
+                </pre>
+              </div>
             </div>
           </>
         ) : (
           <div
-            className="w-full p-[15px] h-auto lg:bg-[#f1f1f1] md:bg-[#f1f1f1] rounded-xl mt-[10px] text-ellipsis"
+            className="w-full p-[10px] lg:p-[15px] md:p-[15px] h-auto lg:bg-[#f1f1f1] md:bg-[#f1f1f1] rounded-xl mt-[10px] text-ellipsis"
             onClick={() => showMore()}
             style={{ transition: ".3s" }}
           >
-            <pre className="h-full  p-[15px] lg:p-0 md:p-0 w-full rounded-xl bg-[#f1f1f1] lg:bg-transparent md:bg-transparent overflow-x-auto whitespace-pre-wrap break-words text-[12px] lg:text-[14px] md:text-[14px] leading-[18px] ">
-              {snippet.description}
-            </pre>
+            <div className="w-full h-full p-[10px] lg:p-0 md:p-0 bg-[#f1f1f1] lg:bg-transparent md:bg-transparent rounded-xl">
+              <pre className="h-full w-full  overflow-x-auto whitespace-pre-wrap break-words text-[12px] lg:text-[14px] md:text-[14px] leading-[18px] ">
+                {snippet.description}
+              </pre>
+            </div>
           </div>
         )}
       </div>

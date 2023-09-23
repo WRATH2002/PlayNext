@@ -16,10 +16,11 @@ import WatchVideoPage from "./WatchVideoPage";
 import { useSelector } from "react-redux";
 import { toggleSidebar, openSidebar } from "../utils/appSlice";
 import { useDispatch } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { SEARCH_API } from "../utils/constants";
 import SearchSuggestionContainer from "./SearchSuggestionContainer";
-
+import { buttonList } from "../utils/constants";
+import Button from "./Button";
 // Sidebar Icons
 
 const Navbar = () => {
@@ -97,7 +98,7 @@ const Navbar = () => {
       ) : (
         <>
           <div
-            className="h-[60px] w-full flex justify-center items-center fixed shadow-md z-2 bg-white"
+            className="h-[60px] w-full flex justify-center items-center fixed  z-2 bg-white"
             style={{ zIndex: "2" }}
           >
             <div className="h-[40px] flex justify-start items-center w-[60%]  lg:w-[28%] md:w-[28%] z-2">
@@ -193,7 +194,21 @@ const Navbar = () => {
             ></div>
           </>
         )}
-        <Outlet />
+        <div>
+          {/* <div className="flex w-full overflow-x-scroll">
+            {buttonList.map((btnName) => {
+              return (
+                <Link to={"/category?v=" + btnName}>
+                  <Button name={btnName} />
+                </Link>
+              );
+            })}
+          </div> */}
+
+          <Outlet />
+
+          {/*  */}
+        </div>
         {/* <div className="w-full bg-slate-400 p-[25px] flex flex-wrap justify-center z-0">
           <VideoContainer />
         </div> */}

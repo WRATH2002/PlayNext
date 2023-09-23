@@ -6,15 +6,19 @@ import { useSearchParams } from "react-router-dom";
 import LiveChat from "./LiveChat";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import VideoDescription from "./VideoDescription";
+import { COMMENT_API } from "../utils/constants";
+import Comments from "./Comments";
 
 const WatchVideoPage = () => {
   const [liveChatFlag, setLiveChatFlag] = useState(true);
+  const [comments, setComments] = useState([]);
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("v"));
   const dispatch = useDispatch();
 
   useEffect(() => {
     sidebarHandler();
+    getComments();
   }, []);
 
   // const videoInfo = async () => {
@@ -32,8 +36,43 @@ const WatchVideoPage = () => {
     setLiveChatFlag(!liveChatFlag);
   }
 
+  const getComments = async () => {
+    const data = await fetch(
+      COMMENT_API +
+        "&textFormat=plainText&part=snippet&videoId=" +
+        searchParams.get("v") +
+        "&maxResults=50"
+    );
+    const json = await data.json();
+    console.log("Comment");
+    console.log(json);
+    setComments(json?.items);
+  };
+
+  console.log(comments);
+
+  // function alertDownload() {
+  //   var x = document.getElementById("download");
+
+  //   // Add the "show" class to DIV
+  //   x.className = "show";
+
+  //   // After 3 seconds, remove the show class from DIV
+  //   setTimeout(function () {
+  //     x.className = x.className.replace("show", "");
+  //   }, 1500);
+  // }
+
   return (
     <>
+      {/* <div
+        className="flex  fixed w-full h-full bg-slate-400"
+        style={{ zIndex: "-2" }}
+      >
+        <span className="hide" id="download" style={{ zIndex: "4" }}>
+          This video can not be downloaded
+        </span>
+      </div> */}
       <div className="w-full flex">
         <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[25px] md:p-[25px]">
           <iframe
@@ -52,9 +91,13 @@ const WatchVideoPage = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+          <span>
+            <span></span>
+          </span>
           {/* <div id="description"></div>
           <div id="comment"></div> */}
           <VideoDescription id={searchParams.get("v")} />
+          <Comments comments={comments} />
         </div>
         {liveChatFlag === true ? (
           <div
@@ -111,6 +154,7 @@ const WatchVideoPage = () => {
           </div>
         )}
       </div>
+      {/* <div className="w-full h-full bg-slate-400"></div> */}
 
       {/* <div className="h-[400px] flex justify-center items-center">
         <div className="w-full border-[3px] border-[black]"></div>

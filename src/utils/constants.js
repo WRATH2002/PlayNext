@@ -1,5 +1,5 @@
-const API_KEY = "AIzaSyDZVrRp6nQYvPIrzoD259hVPdX_QxYdHeI";
-// const API_KEY = "AIzaSyCaGqENvGS-L_oSbLwUMNqwfEBGVwH5yqU";
+// require("dotenv").config();
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const VIDEO_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
@@ -7,6 +7,9 @@ export const VIDEO_API =
 
 export const SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&q=";
+
+export const COMMENT_API =
+  "https://www.googleapis.com/youtube/v3/commentThreads?key=" + API_KEY;
 
 var nameList = [
   "Time",
@@ -237,3 +240,27 @@ export const VIEW_COUNT =
   "https://www.googleapis.com/youtube/v3/videos?part=statistics&key=" +
   API_KEY +
   "&id=";
+
+export const buttonList = [
+  "All",
+  "Music",
+  "Live",
+  "Rain",
+  "Akshay Saini",
+  "React JS",
+  "Computer Programming",
+  "4K resolution",
+  "Rockets",
+  "Dramedy",
+  "Cricket",
+  "Bollywood Music",
+  "Tourism",
+  "Comedy",
+  "Stock markets",
+  "Motorcycling",
+  "Jukebox",
+  "Mixes",
+  "Watched",
+  "New to you",
+  "Recently Uploaded",
+];

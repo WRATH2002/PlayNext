@@ -34,3 +34,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
