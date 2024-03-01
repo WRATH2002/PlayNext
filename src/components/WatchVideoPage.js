@@ -8,6 +8,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import VideoDescription from "./VideoDescription";
 import { COMMENT_API } from "../utils/constants";
 import Comments from "./Comments";
+import RelatedVideos from "./RelatedVideos";
+import RelatedVideosContainer from "./RelatedVideosContainer";
 
 const WatchVideoPage = () => {
   const [liveChatFlag, setLiveChatFlag] = useState(true);
@@ -73,7 +75,7 @@ const WatchVideoPage = () => {
           This video can not be downloaded
         </span>
       </div> */}
-      <div className="w-full flex">
+      <div className="w-full flex flex-col lg:flex-row md:flex-row">
         <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[25px] md:p-[25px]">
           <iframe
             className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px]"
@@ -99,6 +101,9 @@ const WatchVideoPage = () => {
           <VideoDescription id={searchParams.get("v")} />
           <Comments comments={comments} />
         </div>
+        <div className="flex lg:flex md:flex w-full lg:w-[calc(30%-25px)] md:w-[calc(30%-25px)] h-[550px] border border-[#bdbdbd] mr-[25px]  flex-col items-start  mt-[25px] rounded-xl ">
+          {/* <RelatedVideosContainer /> */}
+        </div>
         {liveChatFlag === true ? (
           <div
             className="hidden lg:flex md:flex w-[calc(30%-25px)] h-[550px] border border-[#bdbdbd] mr-[25px]  flex-col items-center justify-between mt-[25px] rounded-xl "
@@ -117,7 +122,7 @@ const WatchVideoPage = () => {
               className="w-full px-[25px] my-[25px] h-[calc(550px-80px)] overflow-scroll flex flex-col-reverse justify-start "
               style={{ transition: ".3s" }}
             >
-              {/* <LiveChat /> */}
+              <LiveChat />
             </div>
             <div className="w-full h-[60px] border-t border-[#bdbdbd] flex justify-center p-[3px] items-center">
               <span
@@ -141,7 +146,7 @@ const WatchVideoPage = () => {
               className="w-full h-0 p-0 overflow-scroll px-[25px] my-0 "
               style={{ transition: ".3s" }}
             >
-              {/* <LiveChat /> */}
+              <LiveChat />
             </div>
             <div className="w-full h-[50px]  flex justify-center p-[3px] items-center">
               <span

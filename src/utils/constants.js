@@ -220,6 +220,11 @@ export const SUBSCRIBERS_COUNT =
   API_KEY +
   "&id=";
 
+export const RELATED_VIDEOS_ONE =
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=";
+
+export const RELATED_VIDEOS_TWO = "&type=video&key=" + API_KEY;
+
 export const RELATED_SEARCH =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&type=video&key=" +
   API_KEY +

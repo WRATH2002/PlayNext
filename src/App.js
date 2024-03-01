@@ -7,6 +7,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import VideoContainer from "./components/VideoContainer";
 import WatchVideoPage from "./components/WatchVideoPage";
 import Body from "./components/Body";
+import SearchVideo from "./components/SearchVideo";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ const appRouter = createBrowserRouter([
       {
         path: "watch",
         element: <WatchVideoPage />,
+      },
+      {
+        path: "search",
+        element: <SearchVideo />,
       },
     ],
   },

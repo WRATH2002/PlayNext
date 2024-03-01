@@ -4,7 +4,7 @@ import { BiSolidLike } from "react-icons/bi";
 const Comment = ({ comment }) => {
   return (
     <>
-      <div className="flex justify-start items-start my-[20px]  px-[10px] lg:px-0 md:px-0 ">
+      <div className=" flex justify-start items-start my-[20px]  px-[10px] lg:px-0 md:px-0 ">
         <img
           className="h-9 w-9 rounded-full"
           src={
@@ -15,7 +15,7 @@ const Comment = ({ comment }) => {
           <span className="flex items-center justify-start font-semibold h-[20px] ">
             @{comment?.snippet?.topLevelComment?.snippet?.authorDisplayName}
           </span>
-          <span className="leading-[18px] ">
+          <span className=" leading-[18px] font-sans flex flex-wrap">
             {comment?.snippet?.topLevelComment?.snippet?.textOriginal}
           </span>
           <div className="flex justify-start items-center my-[7px]">

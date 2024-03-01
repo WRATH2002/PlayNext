@@ -5,26 +5,18 @@ import { useState, useEffect } from "react";
 const VideoCardShimmer = () => {
   return (
     <>
-      <div className="mb:[20px] lg:mb-[40px] md:mb-[40px] ">
-        <div className="w-[370px] h-[209px] rounded-0 md:rounded-[15px] lg:rounded-[15px] bg-[#adadad]"></div>
-        <span className="flex justify-end items-center px-[4px] mt-[-31px] h-[33px] w-full">
-          {/* {changeDuration()} */}
-          {/* {setDuration(props.data.contentDetails.duration.replace("PT", ""))} */}
-          <span className="text-[white] bg-[#adadad] text-[13px] px-[8px] rounded-md bg-[#000000bf]"></span>
-          {/* <span>{props.data.contentDetails.duration}</span> */}
-        </span>
-        <div className="flex items-start  mt-[10px] h-[90px]">
-          <div className="rounded-full bg-[#adadad] w-[40px] h-[40px] ml-[10px] lg:ml-0 md:ml-0"></div>
-          <div className="flex flex-col justify-start ml-[16px] ">
-            <span className=" w-[270px] text-[15px]  lg:w-[300px] md:w-[300px] h-[18px] rounded-sm  overflow-hidden text-ellipsis bg-[#adadad] "></span>
+      <div className="w-full ">
+        <div className="w-full md:w-[370px] lg:w-[370px] rounded-0 md:rounded-[10px] lg:rounded-[10px] bg-[#3a3a3a] h-[209px]"></div>
+        <div className="flex items-start  mt-[10px] h-[90px] w-full">
+          <div className="rounded-full w-[40px] h-[40px] ml-[10px] lg:ml-0 md:ml-0 bg-[#3a3a3a]"></div>
+          <div className="flex flex-col justify-start ml-[16px] w-[calc(100%-66px)]  md:w-[calc(100%-56px)] lg:w-[calc(100%-56px)]  ">
+            <span className=" w-[calc(100%-10px)] text-[15px]  lg:w-[300px] md:w-[300px] h-[28px] bg-[#3a3a3a]  rounded-none md:rounded-sm lg:rounded-sm"></span>
 
-            <div className="w-[270px] lg:w-[300px] md:w-[300px] flex flex-col text-[#6a6a6a] ">
-              <span className="bg-[#adadad] mt-[10px] h-[18px] rounded-sm w-[270px]  lg:w-[300px] md:w-[300px]"></span>
-
-              <span className=" w-[120px] rounded-sm mt-[10px]  bg-[#adadad] lg:w-[180px] md:w-[180px]bg-[#adadad] h-[18px]">
-                {/* {props.data.statistics.viewCount} */}
-              </span>
-            </div>
+            {/* <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start mt-[10px]"> */}
+            <span className=" w-[calc(100%-10px)] text-[15px]  lg:w-[300px] md:w-[300px] h-[28px] bg-[#3a3a3a] mt-[10px] rounded-none md:rounded-sm lg:rounded-sm"></span>
+            {/* <span className="w-[calc(100%-26px)] bg-[#3a3a3a] h-[28px]"></span>
+              <span className="w-[calc(100%-26px)] bg-[#3a3a3a] h-[28px]"></span> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
