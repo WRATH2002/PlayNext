@@ -16,6 +16,7 @@ const SearchVideosCard = (props) => {
     SearchSuggestion();
     fetchChannelLogo();
     fetchDur();
+    getView();
     // changeDuration();
   }, []);
 
@@ -137,6 +138,18 @@ const SearchVideosCard = (props) => {
     // console.log(tempfive);
     setDuration(tempfive);
   }
+
+  const getView = async () => {
+    const data = await fetch(VIEW_COUNT + props?.data?.id?.videoId);
+    const json = await data.json();
+    console.log("viewsssssss");
+    console.log(json?.items[0]?.statistics?.viewCount);
+    setView(json?.items[0]?.statistics?.viewCount);
+    //   console.log(searchVideos);
+    //   setSearchVideos(json.items);
+    // console.log(searSuggestion);
+    // setVideos(json.items);
+  };
 
   return (
     <>

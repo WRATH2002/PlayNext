@@ -44,10 +44,12 @@ const Navbar = () => {
   //   setSuggestionFlag(true);
   // }
   useEffect(() => {
-    const timer = setTimeout(() => SearchSuggestionn(), 200);
-    return () => {
-      clearTimeout(timer);
-    };
+    if (searchQuery.length != 0) {
+      const timer = setTimeout(() => SearchSuggestionn(), 200);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
   }, [searchQuery]);
 
   function sidebarHandler() {

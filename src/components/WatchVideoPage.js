@@ -12,7 +12,7 @@ import RelatedVideos from "./RelatedVideos";
 import RelatedVideosContainer from "./RelatedVideosContainer";
 
 const WatchVideoPage = () => {
-  const [liveChatFlag, setLiveChatFlag] = useState(true);
+  const [liveChatFlag, setLiveChatFlag] = useState(false);
   const [comments, setComments] = useState([]);
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("v"));
@@ -51,6 +51,19 @@ const WatchVideoPage = () => {
     setComments(json?.items);
   };
 
+  // const getRealtedVideos = async () => {
+  //   const data = await fetch(
+  //     COMMENT_API +
+  //       "&textFormat=plainText&part=snippet&videoId=" +
+  //       searchParams.get("v") +
+  //       "&maxResults=50"
+  //   );
+  //   const json = await data.json();
+  //   console.log("Comment");
+  //   console.log(json);
+  //   setComments(json?.items);
+  // };
+
   console.log(comments);
 
   // function alertDownload() {
@@ -75,7 +88,7 @@ const WatchVideoPage = () => {
           This video can not be downloaded
         </span>
       </div> */}
-      <div className="w-full flex flex-col lg:flex-row md:flex-row">
+      <div className="w-full flex flex-col lg:flex-row md:flex-row p-0">
         <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[25px] md:p-[25px]">
           <iframe
             className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px]"
@@ -102,7 +115,7 @@ const WatchVideoPage = () => {
           <Comments comments={comments} />
         </div>
         <div className="flex lg:flex md:flex w-full lg:w-[calc(30%-25px)] md:w-[calc(30%-25px)] h-[550px] border border-[#bdbdbd] mr-[25px]  flex-col items-start  mt-[25px] rounded-xl ">
-          {/* <RelatedVideosContainer /> */}
+          <RelatedVideosContainer />
         </div>
         {liveChatFlag === true ? (
           <div
@@ -134,29 +147,31 @@ const WatchVideoPage = () => {
             </div>
           </div>
         ) : (
-          <div
-            className="w-[calc(30%-25px)] h-[50px] border border-[#bdbdbd] mr-[25px] flex flex-col items-center justify-between mt-[25px] rounded-xl "
-            style={{ transition: ".3s" }}
-          >
-            <div
-              className="w-full h-0  flex items-center justify-between"
-              style={{ transition: ".3s" }}
-            ></div>
-            <div
-              className="w-full h-0 p-0 overflow-scroll px-[25px] my-0 "
+          <>
+            {/* <div
+              className="w-[calc(30%-25px)] h-[50px] border border-[#bdbdbd] mr-[25px] flex flex-col items-center justify-between mt-[25px] rounded-xl "
               style={{ transition: ".3s" }}
             >
-              <LiveChat />
-            </div>
-            <div className="w-full h-[50px]  flex justify-center p-[3px] items-center">
-              <span
-                className="w-full h-full rounded-full hover:bg-[#bdbdbd] flex justify-center items-center cursor-pointer"
-                onClick={() => toggleLiveChat()}
+              <div
+                className="w-full h-0  flex items-center justify-between"
+                style={{ transition: ".3s" }}
+              ></div>
+              <div
+                className="w-full h-0 p-0 overflow-scroll px-[25px] my-0 "
+                style={{ transition: ".3s" }}
               >
-                Show Chat
-              </span>
-            </div>
-          </div>
+                <LiveChat />
+              </div>
+              <div className="w-full h-[50px]  flex justify-center p-[3px] items-center">
+                <span
+                  className="w-full h-full rounded-full hover:bg-[#bdbdbd] flex justify-center items-center cursor-pointer"
+                  onClick={() => toggleLiveChat()}
+                >
+                  Show Chat
+                </span>
+              </div>
+            </div> */}
+          </>
         )}
       </div>
       {/* <div className="w-full h-full bg-slate-400"></div> */}
