@@ -13,7 +13,9 @@ import RelatedVideosContainer from "./RelatedVideosContainer";
 
 const WatchVideoPage = () => {
   const [liveChatFlag, setLiveChatFlag] = useState(false);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState();
+  const [c, setC] = useState("");
+  const [u, setU] = useState("");
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("v"));
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const WatchVideoPage = () => {
   useEffect(() => {
     sidebarHandler();
     getComments();
-  }, []);
+  }, [searchParams.get("v")]);
 
   // const videoInfo = async () => {
   //   const data = await fetch(CHANNEL_LOGO_API + props.data.snippet.channelId);
@@ -49,6 +51,10 @@ const WatchVideoPage = () => {
     console.log("Comment");
     console.log(json);
     setComments(json?.items);
+    setC(json?.items[0]?.snippet?.topLevelComment?.snippet?.textOriginal);
+    setU(
+      json?.items[0]?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl
+    );
   };
 
   // const getRealtedVideos = async () => {
@@ -91,7 +97,7 @@ const WatchVideoPage = () => {
       <div className="w-full flex flex-col lg:flex-row md:flex-row p-0">
         <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[25px] md:p-[25px]">
           <iframe
-            className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px]"
+            className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] fixed md:static lg:static border-b border-[#aaaaaa] md:border-b-[0] lg:border-b-[0]"
             controls
             autoPlay
             width="560"
@@ -106,15 +112,21 @@ const WatchVideoPage = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+          <div className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] flex md:hidden lg:hidden"></div>
           <span>
             <span></span>
           </span>
           {/* <div id="description"></div>
           <div id="comment"></div> */}
           <VideoDescription id={searchParams.get("v")} />
-          <Comments comments={comments} />
+          <Comments
+            comments={comments}
+            id={searchParams.get("v")}
+            comm={c}
+            ur={u}
+          />
         </div>
-        <div className="flex lg:flex md:flex w-full lg:w-[calc(30%-25px)] md:w-[calc(30%-25px)] h-[550px] border border-[#bdbdbd] mr-[25px]  flex-col items-start  mt-[25px] rounded-xl ">
+        <div className="flex lg:flex md:flex w-full lg:w-[calc(30%)] md:w-[calc(30%)] h-auto mr-[25px]  flex-col items-start  mt-[25px] rounded-xl ">
           <RelatedVideosContainer />
         </div>
         {liveChatFlag === true ? (

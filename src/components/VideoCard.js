@@ -9,6 +9,9 @@ const VideoCard = (props) => {
   const [month, setMonth] = useState(0);
   const [week, setWeek] = useState(0);
   const [day, setDay] = useState(0);
+  const [hour, setHour] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [second, setSecond] = useState(0);
   const [date, setDate] = useState(props?.data?.snippet?.publishedAt);
   useEffect(() => {
     console.log("propssssssssssssssssssssss");
@@ -19,46 +22,64 @@ const VideoCard = (props) => {
   }, [date]);
 
   function calculateDurationFromDate(dateString) {
-    // Convert the provided date string to a Date object
-    const providedDate = new Date(dateString);
+    // Parse the string into a Date object
+    let startDate = new Date(dateString);
+    let endDate = new Date();
 
-    // Get the current date
-    const currentDate = new Date();
+    // Calculate the difference in milliseconds
+    let difference = endDate - startDate;
 
-    // Calculate the time difference in milliseconds
-    const timeDifference = currentDate - providedDate;
+    // Convert milliseconds to appropriate units
+    let millisecondsPerSecond = 1000;
+    let millisecondsPerMinute = millisecondsPerSecond * 60;
+    let millisecondsPerHour = millisecondsPerMinute * 60;
+    let millisecondsPerDay = millisecondsPerHour * 24;
+    let millisecondsPerWeek = millisecondsPerDay * 7;
+    let millisecondsPerMonth = millisecondsPerDay * 30; // Approximation
+    let millisecondsPerYear = millisecondsPerDay * 365; // Approximation
 
-    // Convert milliseconds to seconds
-    const secondsDifference = Math.floor(timeDifference / 1000);
+    let years = 0,
+      months = 0,
+      weeks = 0,
+      days = 0,
+      hours = 0,
+      minutes = 0,
+      seconds = 0;
 
-    // Calculate the duration in years, months, weeks, and days
-    const years = Math.floor(secondsDifference / (3600 * 24 * 365));
-    const remainingSeconds = secondsDifference - years * 3600 * 24 * 365;
-    const months = Math.floor(remainingSeconds / (3600 * 24 * 30));
-    const remainingSecondsAfterMonths =
-      remainingSeconds - months * 3600 * 24 * 30;
-    const weeks = Math.floor(remainingSecondsAfterMonths / (3600 * 24 * 7));
-    const remainingSecondsAfterWeeks =
-      remainingSecondsAfterMonths - weeks * 3600 * 24 * 7;
-    const days = Math.floor(remainingSecondsAfterWeeks / (3600 * 24));
-
-    // Return the duration as an object
-
-    // console.log("date");
-    // console.log(years);
-    // console.log(months);
-    // console.log(weeks);
-    // console.log(days);
-    setYear(years);
-    setMonth(months);
-    setWeek(weeks);
-    setDay(days);
-    //   return {
-    //     years,
-    //     months,
-    //     weeks,
-    //     days,
-    //   };
+    if (difference >= millisecondsPerYear) {
+      years = Math.floor(difference / millisecondsPerYear);
+      setYear(years);
+      difference %= millisecondsPerYear;
+    }
+    if (difference >= millisecondsPerMonth) {
+      months = Math.floor(difference / millisecondsPerMonth);
+      setMonth(months);
+      difference %= millisecondsPerMonth;
+    }
+    if (difference >= millisecondsPerWeek) {
+      weeks = Math.floor(difference / millisecondsPerWeek);
+      setWeek(weeks);
+      difference %= millisecondsPerWeek;
+    }
+    if (difference >= millisecondsPerDay) {
+      days = Math.floor(difference / millisecondsPerDay);
+      setDay(days);
+      difference %= millisecondsPerDay;
+    }
+    if (difference >= millisecondsPerHour) {
+      hours = Math.floor(difference / millisecondsPerHour);
+      setHour(hours);
+      difference %= millisecondsPerHour;
+    }
+    if (difference >= millisecondsPerMinute) {
+      minutes = Math.floor(difference / millisecondsPerMinute);
+      setMinute(minutes);
+      difference %= millisecondsPerMinute;
+    }
+    if (difference >= millisecondsPerSecond) {
+      seconds = Math.floor(difference / millisecondsPerSecond);
+      setSecond(seconds);
+    }
   }
 
   function changeDuration() {
@@ -184,8 +205,14 @@ const VideoCard = (props) => {
                         <>{week} weeks ago</>
                       )}
                     </>
-                  ) : (
+                  ) : day != 0 ? (
                     <>{day} days ago</>
+                  ) : hour != 0 ? (
+                    <>{hour} hours ago</>
+                  ) : minute != 0 ? (
+                    <>{minute} minutes ago</>
+                  ) : (
+                    <>{second} seconds ago</>
                   )}
                 </span>
               </div>
