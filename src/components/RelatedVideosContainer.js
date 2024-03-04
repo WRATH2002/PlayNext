@@ -6,6 +6,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { RELATED_VIDEOS_ONE } from "../utils/constants";
 import { RELATED_VIDEOS_TWO } from "../utils/constants";
 import RelatedVideoShimmer from "./RelatedVideoShimmer";
+import VideoCard from "./VideoCard";
 
 const RelatedVideosContainer = () => {
   const [relatedVideos, setRelatedVideos] = useState([]);
@@ -60,13 +61,25 @@ const RelatedVideosContainer = () => {
           <>
             {videos?.map((vide) => (
               <Link
-                className="w-full md:w-[370px] lg:w-[370px] m-0 md:m-[8px] lg:m-[8px] mb:[20px] lg:mb-[3px] md:mb-[3px] "
+                className="w-full md:w-[370px] lg:w-[370px] m-0 md:m-[8px] lg:m-[8px] mb:[20px] lg:mb-[3px] md:mb-[3px] hidden md:block lg:block"
                 key={vide.id}
                 to={"/watch?v=" + vide.id}
               >
                 <RelatedVideos data={vide} />
               </Link>
             ))}
+
+            <div className="w-full p-0 md:p-[25px] lg:p-[25px] flex flex-wrap justify-center z-0 bg-transparent bg-[#0f0f0f]">
+              {videos?.map((video) => (
+                <Link
+                  className="w-full md:w-[370px] lg:w-[370px] m-0 md:m-[8px] lg:m-[8px] mb:[20px] lg:mb-[40px] md:mb-[40px] z-0 block md:hidden lg:hidden"
+                  key={video.id}
+                  to={"/watch?v=" + video.id}
+                >
+                  <VideoCard data={video} />
+                </Link>
+              ))}
+            </div>
           </>
         )}
         {/* < /> */}

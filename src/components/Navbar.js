@@ -104,7 +104,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="w-full h-auto">
-              {searchSuggestion?.length === 0 ? (
+              {searchSuggestion?.length === 0 || searchQuery === "" ? (
                 <div className="w-full  mt-[10px] shadow-md rounded-xl bg-[#222222]">
                   {/* {searchSuggestion.map((search, index) => (
                         <Link
@@ -123,7 +123,10 @@ const Navbar = () => {
                       className="w-full  h-[40px] flex justify-start items-center hover:bg-[#323232d7]"
                       key={index}
                       to={"/search?v=" + search}
-                      onClick={() => setPSearch(false)}
+                      onClick={() => {
+                        setPSearch(false);
+                        setSearchQuery("");
+                      }}
                     >
                       <div className=" h-[20px] text-white font-[roboto]  w-[100%] flex justify-start items-center bg-transparent">
                         <GoSearch className="mr-[35px] text-[25px]" />
@@ -197,7 +200,7 @@ const Navbar = () => {
                     </div>
                   )}
 
-                  {searchSuggestion.length === 0 ? (
+                  {searchSuggestion.length === 0 || searchQuery.length === 0 ? (
                     <div className="w-full  mt-[10px] shadow-md rounded-xl bg-[#222222]">
                       {/* {searchSuggestion.map((search, index) => (
                         <Link
@@ -216,6 +219,9 @@ const Navbar = () => {
                           className="w-full  h-[40px] flex justify-start items-center hover:bg-[#323232d7]"
                           key={index}
                           to={"/search?v=" + search}
+                          onClick={() => {
+                            setSearchQuery("");
+                          }}
                         >
                           <SearchSuggestionContainer data={search} />
                         </Link>
@@ -260,7 +266,7 @@ const Navbar = () => {
         {sidebarFlag === false ? (
           <>
             <div
-              className="fixed flex  flex-shrink-0  h-[calc(100vh-60px)]  w-0 bg-[#0f0f0f] text-white"
+              className="fixed flex  flex-shrink-0  h-[calc(100vh-60px)]  w-0 bg-[#0f0f0f] text-white z-50"
               style={{ transition: ".3s" }}
             ></div>
             <div
@@ -271,7 +277,7 @@ const Navbar = () => {
         ) : (
           <>
             <div
-              className="fixed h-[calc(100vh-60px)] z-10 w-[230px]   flex-shrink-0 flex flex-col items-center pt-[10px] overflow-y-scroll bg-[#0f0f0f] text-white"
+              className="fixed h-[calc(100vh-60px)] w-[230px]   flex-shrink-0 flex flex-col items-center pt-[10px] overflow-y-scroll bg-[#0f0f0f] text-white z-50"
               style={{ transition: ".3s" }}
             >
               <Sidebar />

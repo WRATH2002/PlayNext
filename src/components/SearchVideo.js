@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { SEARCH_TEXT_API } from "../utils/constants";
 import SearchVideosCard from "./SearchVideosCard";
+import SearchVideoCardShimmer from "./SearchVideoCardShimmer";
 
 const vidData = [
   {
@@ -925,7 +926,7 @@ const SearchVideo = () => {
 
   useEffect(() => {
     SearchSuggestion();
-  }, []);
+  }, [searchParams.get("v")]);
 
   useEffect(() => {
     console.log("searchVideos");
@@ -947,7 +948,21 @@ const SearchVideo = () => {
     <div className="bg-[#0f0f0f] w-full flex flex-col justify-center items-start text-white h-full z-50 px-0 md:px-[25px] lg:px-[25px]">
       {/* <img className="w-[100px] " src={props.data.thumbnails.dafault}></img> */}
       {searchVideos === undefined ? (
-        <></>
+        <>
+          {Array(9)
+            ?.fill(" ")
+            ?.map((e, index) => {
+              return (
+                <div
+                  className="w-full md:w-[370px] lg:w-[370px] m-0 md:m-[8px] lg:m-[8px] mb:[20px] lg:mb-[3px] md:mb-[3px] "
+                  // key={vide.id}
+                  // to={"/watch?v=" + vide.id}
+                >
+                  <SearchVideoCardShimmer />
+                </div>
+              );
+            })}
+        </>
       ) : (
         <>
           {searchVideos.map((vid) => {

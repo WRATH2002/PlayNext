@@ -97,7 +97,7 @@ const WatchVideoPage = () => {
       <div className="w-full flex flex-col lg:flex-row md:flex-row p-0">
         <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[25px] md:p-[25px]">
           <iframe
-            className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] fixed md:static lg:static border-b border-[#aaaaaa] md:border-b-[0] lg:border-b-[0]"
+            className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] fixed md:static lg:static border-b border-[#aaaaaa] md:border-b-[0] lg:border-b-[0] z-40"
             controls
             autoPlay
             width="560"
@@ -129,6 +129,7 @@ const WatchVideoPage = () => {
         <div className="flex lg:flex md:flex w-full lg:w-[calc(30%)] md:w-[calc(30%)] h-auto mr-[25px]  flex-col items-start  mt-[25px] rounded-xl ">
           <RelatedVideosContainer />
         </div>
+
         {liveChatFlag === true ? (
           <div
             className="hidden lg:flex md:flex w-[calc(30%-25px)] h-[550px] border border-[#bdbdbd] mr-[25px]  flex-col items-center justify-between mt-[25px] rounded-xl "

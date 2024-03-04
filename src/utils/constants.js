@@ -6,7 +6,7 @@ export const VIDEO_API =
   API_KEY;
 
 export const SEARCH_API =
-  "http://suggestqueries.google.com/complete/search?client=chrome&q=";
+  "http://clients1.google.com/complete/search?hl=en&output=toolbar&q=";
 
 export const COMMENT_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?key=" + API_KEY;

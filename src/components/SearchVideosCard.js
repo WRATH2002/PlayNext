@@ -173,7 +173,7 @@ const SearchVideosCard = (props) => {
         <div className="w-[calc(100%-370px)] flex flex-col justify-start items-start ml-[20px]">
           <div className="w-[calc(100%)] min-h-[27px] max-h-[55px] text-[18px] overflow-hidden text-ellipsis line-clamp-2 ">
             {props.data.snippet.title}
-            {duration}
+            {/* {duration} */}
           </div>
           <div className="w-[calc(100%)] h-[20px] flex justify-start items-center text-[12.8px] text-[#aaaaaa]">
             <span className="">
@@ -188,7 +188,9 @@ const SearchVideosCard = (props) => {
               )}{" "}
               views
             </span>
-            <span className="mx-[5px]">•</span>
+            <span className="mx-[5px] h-[10px] flex justify-center items-center">
+              •
+            </span>
             <span className="">
               {year != 0 ? (
                 <>
@@ -257,7 +259,9 @@ const SearchVideosCard = (props) => {
             </span>
 
             <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#aaaaaa] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
-              <span className="">{props.data.snippet.channelTitle}</span>
+              <span className="max-w-[45%] h-[15px] text-ellipsis overflow-hidden w-auto flex justify-start items-center  ">
+                {props.data.snippet.channelTitle}
+              </span>
               <span className=" flex lg:hidden md:hidden justify-center items-center  mx-[5px] mt-[-2px] h-[10px] ">
                 •
               </span>
@@ -277,7 +281,7 @@ const SearchVideosCard = (props) => {
                 <span className=" flex justify-center items-center mx-[5px] mt-[-2px] h-[10px] ">
                   •
                 </span>
-                <span className=" text-[13px]">
+                <span className=" text-[12px]">
                   {year != 0 ? (
                     <>
                       {month >= 12 ? (

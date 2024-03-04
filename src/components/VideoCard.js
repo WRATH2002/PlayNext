@@ -152,12 +152,14 @@ const VideoCard = (props) => {
             </span>
 
             <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#aaaaaa] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
-              <span className="">{props.data.snippet.channelTitle}</span>
-              <span className=" flex lg:hidden md:hidden justify-center items-center  mx-[5px] mt-[-2px] h-[10px] ">
+              <span className="  h-full overflow-hidden line-clamp-1 text-ellipsis max-w-[45%] w-auto ">
+                {props.data.snippet.channelTitle}
+              </span>
+              <span className=" flex lg:hidden md:hidden justify-center items-center  mx-[5px] mt-[-2px]  h-[10px] ">
                 •
               </span>
-              <div className="flex-row flex justify-start items-center">
-                <span className="  text-[#aaaaaa] ">
+              <div className="flex-row flex justify-start items-center h-[15px]">
+                <span className="  text-[#aaaaaa]  h-full overflow-hidden line-clamp-1 text-ellipsis  whitespace-nowrap">
                   {Math.floor(props.data.statistics.viewCount / 1000000) !=
                   0 ? (
                     <>
@@ -177,10 +179,10 @@ const VideoCard = (props) => {
                   views
                   {/* {props.data.statistics.viewCount} */}
                 </span>
-                <span className=" flex justify-center items-center mx-[5px] mt-[-2px] h-[10px] ">
+                <span className=" flex justify-center items-center mx-[5px] mt-[-2px]   h-[10px]">
                   •
                 </span>
-                <span className=" text-[13px]">
+                <span className=" text-[12px] h-full overflow-hidden line-clamp-1 text-ellipsis  whitespace-nowrap">
                   {year != 0 ? (
                     <>
                       {month >= 12 ? (
