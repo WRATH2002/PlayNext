@@ -6,7 +6,7 @@ export const VIDEO_API =
   API_KEY;
 
 export const SEARCH_API =
-  "http://clients1.google.com/complete/search?hl=en&output=toolbar&q=";
+  "https://cors-anywhere.herokuapp.com/http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const COMMENT_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?key=" + API_KEY;

@@ -29,7 +29,8 @@ import { MdPerson } from "react-icons/md";
 // Sidebar Icons
 import { PiBellSimpleFill } from "react-icons/pi";
 import { TiVideo } from "react-icons/ti";
-
+import { LuSearchX } from "react-icons/lu";
+// import { useHistory } from "react-router-dom";
 const Navbar = () => {
   const [phone, setPhone] = useState(true);
   const sidebarFlag = useSelector((store) => store.app.sidebar);
@@ -80,12 +81,14 @@ const Navbar = () => {
     setPhone(false);
   }
 
+  // const history = useHistory();
+
   return (
     <>
       {pSearch === true && phone === true ? (
         <>
-          <div className="w-full h-[100svh] bg-[#0f0f0f] fixed z-50 p-[10px]">
-            <div className="w-full h-[40px] flex justify-center items-center mb-[10px]">
+          <div className="w-full h-[100svh] bg-[#0f0f0f] fixed z-50 pt-[10px]">
+            <div className="w-full h-[40px] flex justify-center items-center mb-[10px] px-[10px]">
               <div
                 className="w-[30px] h-[40px] rounded-full flex justify-center items-center mr-[10px] "
                 onClick={() => setPSearch(false)}
@@ -95,32 +98,40 @@ const Navbar = () => {
               <input
                 className="w-[calc(100%-90px)] h-full px-[20px] outline-none bg-[#222222] rounded-full text-white font-[roboto]"
                 placeholder="Search"
-                type="text"
+                // type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.nativeEvent.key === "Enter") {
+                    console.log("enter");
+                    window.location.href = "/search?v=" + searchQuery;
+                  }
+                }}
+                onChange={(e) => {
+                  console.log(e);
+                  setSearchQuery(e.target.value);
+                }}
               ></input>
               <div className="w-[40px] h-[40px] rounded-full flex justify-center items-center ml-[10px] bg-[#222222]">
                 <PiMicrophoneFill className="text-[20px] text-[white]" />
               </div>
             </div>
             <div className="w-full h-auto">
-              {searchSuggestion?.length === 0 || searchQuery === "" ? (
-                <div className="w-full  mt-[10px] shadow-md rounded-xl bg-[#222222]">
-                  {/* {searchSuggestion.map((search, index) => (
-                        <Link
-                          className="w-full  h-[40px] flex justify-start items-center hover:bg-[#323232d7]"
-                          key={index}
-                          to={"/search"}
-                        >
-                          <SearchSuggestionContainer data={search} />
-                        </Link>
-                      ))} */}
+              {searchQuery.length === 0 ? (
+                <div className="w-full  mt-[10px] shadow-md rounded-xl bg-[#222222]"></div>
+              ) : searchSuggestion?.length === 0 && searchQuery.length !== 0 ? (
+                <div className="w-full  mt-[10px] shadow-md rounded-xl py-[10px]">
+                  <div className="w-full px-[13px] h-[45px] flex justify-start items-center hover:bg-[#323232d7]">
+                    <div className=" h-[20px] text-white font-[roboto]  w-[100%] flex justify-start items-center bg-transparent">
+                      <LuSearchX className="mr-[30px] text-[25px]" />
+                      <span>No Related Search Suggestion</span>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div className="w-full  mt-[10px] shadow-md rounded-xl py-[10px]">
                   {searchSuggestion?.map((search, index) => (
                     <Link
-                      className="w-full  h-[40px] flex justify-start items-center hover:bg-[#323232d7]"
+                      className="w-full px-[13px] h-[45px] flex justify-start items-center hover:bg-[#323232d7]"
                       key={index}
                       to={"/search?v=" + search}
                       onClick={() => {
@@ -129,7 +140,7 @@ const Navbar = () => {
                       }}
                     >
                       <div className=" h-[20px] text-white font-[roboto]  w-[100%] flex justify-start items-center bg-transparent">
-                        <GoSearch className="mr-[35px] text-[25px]" />
+                        <GoSearch className="mr-[30px] text-[25px]" />
                         <span>{search}</span>
                       </div>
                     </Link>
@@ -188,6 +199,12 @@ const Navbar = () => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.nativeEvent.key === "Enter") {
+                        console.log("enter");
+                        window.location.href = "/search?v=" + searchQuery;
+                      }
+                    }}
                   ></input>
                   {searchQuery.length === 0 ? (
                     <></>

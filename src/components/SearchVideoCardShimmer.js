@@ -31,16 +31,12 @@ const SearchVideoCardShimmer = () => {
         <div className="w-full rounded-0 bg-[#3a3a3a] h-[230px]"></div>
 
         <div className="flex items-start  mt-[10px] h-[90px] w-full">
-          <div className="rounded-full w-[40px] ml-[10px] lg:ml-0 md:ml-0"></div>
+          <div className="rounded-full w-[40px] h-[40px] ml-[10px] lg:ml-0 md:ml-0 bg-[#3a3a3a]"></div>
           <div className="flex flex-col justify-start ml-[16px] w-[calc(100%-66px)]  md:w-[calc(100%-56px)] lg:w-[calc(100%-56px)]  ">
-            <span className=" w-full text-[15px]  lg:w-[300px] md:w-[300px] min-h-[20px] max-h-[46px] lg:min-h-[24px]  lg:max-h-[46px] md:min-h-[24px] md:max-h-[46px]  overflow-hidden line-clamp-2 text-ellipsis text-[white] font-[roboto] font-[300] ">
-              Titel
-            </span>
+            <span className=" w-[calc(100%-15px)] text-[15px] bg-[#3a3a3a] rounded-sm lg:w-[300px] md:w-[300px] h-[25px]  md:min-h-[24px] md:max-h-[46px]   text- "></span>
 
-            <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#aaaaaa] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
-              <span className="max-w-[45%] h-[15px] text-ellipsis overflow-hidden w-auto flex justify-start items-center  ">
-                ChannelTitle
-              </span>
+            <div className="w-full mt-[10px] lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#aaaaaa] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
+              <span className="w-[calc(40%)] h-[23px] flex justify-start items-center rounded-sm  bg-[#3a3a3a]"></span>
             </div>
           </div>
         </div>
