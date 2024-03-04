@@ -56,6 +56,23 @@ const RelatedVideosContainer = () => {
                   </div>
                 );
               })}
+
+            {/* <div className="w-full p-0 md:p-[25px] lg:p-[25px] flex flex-wrap justify-center z-0 bg-transparent bg-[#0f0f0f]">
+              {Array(9)
+                .fill(" ")
+                ?.map((e, index) => {
+                  return (
+                    <div
+                      className="w-full md:w-[370px] lg:w-[370px] m-0 md:m-[8px] lg:m-[8px] mb:[20px] lg:mb-[40px] md:mb-[40px] z-0 block md:hidden lg:hidden"
+                      // key={vide.id}
+                      // to={"/watch?v=" + vide.id}
+                    >
+                      <RelatedVideoShimmer />
+                    </div>
+                  );
+                })}
+              
+            </div> */}
           </>
         ) : (
           <>

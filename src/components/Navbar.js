@@ -1,4 +1,4 @@
-import ytlogo from "../assets/img/ytlogo.png";
+import ytlogo from "../assets/img/vid2.png";
 import { IoMdMic } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 import { GoSearch } from "react-icons/go";
@@ -188,7 +188,7 @@ const Navbar = () => {
                 onClick={() => sidebarHandler()}
                 className="text-[24px] mx-[23px] cursor-pointer"
               />
-              <img className="h-[22px] cursor-pointer" src={ytlogo}></img>
+              <img className="h-[33px] cursor-pointer" src={ytlogo}></img>
             </div>
             <div className=" h-[40px] w-[40%] lg:w-[72%] md:w-[72%] flex justify-between items-start ">
               <div className="w-[30%] lg:w-[80%] md:w-[80%] flex justify-end lg:justify-start items-start">
