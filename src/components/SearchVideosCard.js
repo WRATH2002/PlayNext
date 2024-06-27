@@ -153,7 +153,7 @@ const SearchVideosCard = (props) => {
 
   return (
     <>
-      <div className="w-full h-auto  text-white  hidden md:flex lg:flex mb-[17px] font-[roboto] ">
+      <div className="w-full h-auto  text-black  hidden md:flex lg:flex mb-[17px] font-[roboto] ">
         <div className="min-w-[350px] rounded-[10px] flex justify-center items-center ">
           <img
             className="min-w-[350px] rounded-[10px] "
@@ -171,11 +171,11 @@ const SearchVideosCard = (props) => {
           </span>
         </span> */}
         <div className="w-[calc(100%-370px)] flex flex-col justify-start items-start ml-[20px]">
-          <div className="w-[calc(100%)] min-h-[27px] max-h-[55px] text-[18px] overflow-hidden text-ellipsis line-clamp-2 ">
+          <div className="w-[calc(100%)] min-h-[27px] max-h-[55px] text-[18px] overflow-hidden text-ellipsis line-clamp-2 font-semibold">
             {props.data.snippet.title}
             {/* {duration} */}
           </div>
-          <div className="w-[calc(100%)] h-[20px] flex justify-start items-center text-[12.8px] text-[#aaaaaa]">
+          <div className="w-[calc(100%)] h-[20px] flex justify-start items-center text-[12.8px] text-[#6F6F6F]">
             <span className="">
               {Math.floor(view / 1000000) != 0 ? (
                 <>{(view / 1000000).toFixed(2)}M</>
@@ -228,11 +228,11 @@ const SearchVideosCard = (props) => {
                 // onError={(this.style.display = "none")}
               ></img>
             </div>
-            <span className=" text-[12.8px] text-[#aaaaaa]">
+            <span className=" text-[14.8px] text-[#000000]">
               {props.data.snippet.channelTitle}
             </span>
           </div>
-          <span className="text-[12.8px] text-[#aaaaaa]  h-[35px] w-full overflow-hidden line-clamp-2 text-ellipsis">
+          <span className="text-[12.8px] text-[#6F6F6F]  h-[35px] w-full overflow-hidden line-clamp-2 text-ellipsis">
             {props.data.snippet.description}
           </span>
         </div>
@@ -254,11 +254,11 @@ const SearchVideosCard = (props) => {
             src={channelLogo}
           ></img>
           <div className="flex flex-col justify-start ml-[16px] w-[calc(100%-66px)]  md:w-[calc(100%-56px)] lg:w-[calc(100%-56px)]  ">
-            <span className=" w-full text-[15px]  lg:w-[300px] md:w-[300px] min-h-[20px] max-h-[46px] lg:min-h-[24px]  lg:max-h-[46px] md:min-h-[24px] md:max-h-[46px]  overflow-hidden line-clamp-2 text-ellipsis text-[white] font-[roboto] font-[300] ">
+            <span className=" w-full text-[15px]  lg:w-[300px] md:w-[300px] min-h-[20px] max-h-[46px] lg:min-h-[24px]  lg:max-h-[46px] md:min-h-[24px] md:max-h-[46px]  overflow-hidden line-clamp-2 text-ellipsis text-[#000000] font-[roboto] font-[300] ">
               <b>{props.data.snippet.title}</b>
             </span>
 
-            <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#aaaaaa] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
+            <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#6F6F6F] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
               <span className="max-w-[45%] h-[15px] text-ellipsis overflow-hidden w-auto flex justify-start items-center  ">
                 {props.data.snippet.channelTitle}
               </span>
@@ -266,7 +266,7 @@ const SearchVideosCard = (props) => {
                 •
               </span>
               <div className="flex-row flex justify-start items-center">
-                <span className="  text-[#aaaaaa] ">
+                <span className="  text-[#6F6F6F] ">
                   {Math.floor(view / 1000000) != 0 ? (
                     <>{(view / 1000000).toFixed(2)}M</>
                   ) : Math.floor(view / 100000) != 0 ? (

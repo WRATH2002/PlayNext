@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { SEARCH_TEXT_API } from "../utils/constants";
 import SearchVideosCard from "./SearchVideosCard";
 import SearchVideoCardShimmer from "./SearchVideoCardShimmer";
+import { CiFilter } from "react-icons/ci";
 
 const vidData = [
   {
@@ -945,37 +946,56 @@ const SearchVideo = () => {
   };
 
   return (
-    <div className="bg-[#0f0f0f] w-full flex flex-col justify-center items-start text-white h-full z-50 px-0 md:px-[25px] lg:px-[25px]">
+    <div className="bg-[#f7f7f7] w-full flex flex-col justify-center items-start  text-[black] h-full z-50 px-0 md:p-[20px] lg:p-[20px]">
       {/* <img className="w-[100px] " src={props.data.thumbnails.dafault}></img> */}
       {searchVideos === undefined ? (
         <>
-          {Array(9)
-            ?.fill(" ")
-            ?.map((e, index) => {
-              return (
-                <div
-                  className="w-full md:w-[370px] lg:w-[370px] m-0 md:m-[8px] lg:m-[8px] mb:[20px] lg:mb-[3px] md:mb-[3px] "
-                  // key={vide.id}
-                  // to={"/watch?v=" + vide.id}
-                >
-                  <SearchVideoCardShimmer />
-                </div>
-              );
-            })}
+          <div className="w-full h-auto flex flex-col justify-start items-start p-[20px]  bg-[white] border border-[#eeeeee] rounded-2xl drop-shadow-sm">
+            {Array(9)
+              ?.fill(" ")
+              ?.map((e, index) => {
+                return (
+                  <div
+                    className="w-full "
+                    // key={vide.id}
+                    // to={"/watch?v=" + vide.id}
+                  >
+                    <SearchVideoCardShimmer />
+                  </div>
+                );
+              })}
+          </div>
         </>
       ) : (
         <>
-          {searchVideos.map((vid) => {
-            return (
-              <Link
-                className="w-full "
-                key={vid?.id?.videoId}
-                to={"/watch?v=" + vid?.id?.videoId}
-              >
-                <SearchVideosCard data={vid} />
-              </Link>
-            );
-          })}
+          <div className="w-full h-auto flex flex-col justify-start items-start p-[20px]  bg-[white] border border-[#eeeeee] rounded-2xl drop-shadow-sm">
+            <span className="w-full flex justify-between items-center font-[roboto] text-[16px] mb-[15px] mt-[-5px]">
+              <span className="text-[#676767]">
+                Showing Result for :{" "}
+                <span className=" font-semibold text-[black]">
+                  {searchParams.get("v")}
+                </span>{" "}
+              </span>
+              <div className="text-[14px] font-normal text-[#676767] flex justify-end items-center">
+                <CiFilter className="mr-[5px] text-[18px] " /> Filter By
+              </div>
+              {/* <span className="text-[15px] flex justify-end items-center">
+                Filter <CiFilter className="text-[20px] ml-[5px]" />
+              </span> */}
+            </span>
+            {searchVideos.map((vid) => {
+              return (
+                <Link
+                  className="w-full "
+                  key={vid?.id?.videoId}
+                  to={"/watch?v=" + vid?.id?.videoId}
+                >
+                  <SearchVideosCard data={vid} />
+                  {/* <SearchVideoCardShimmer /> */}
+                </Link>
+              );
+            })}
+          </div>
         </>
       )}
     </div>

@@ -6,12 +6,12 @@ export const VIDEO_API =
   API_KEY;
 
 export const SEARCH_API =
-  "https://cors-anywhere.herokuapp.com/http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
-
+  "https://cors-anywhere.herokuapp.com/http://suggestqueries.google.com/complete/search?client=chrome&ds=yt&q=";
+// https://cors-anywhere.herokuapp.com/
 export const COMMENT_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?key=" + API_KEY;
 
-var nameList = [
+export var nameList = [
   "Time",
   "Past",
   "Future",

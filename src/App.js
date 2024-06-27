@@ -16,7 +16,9 @@ function App() {
       <h1 className="font-bold">Helllo</h1> */}
       {/* <Navbar /> */}
       {/* <Body /> */}
+      {/* <div className="w-full h-[100vsh] flex justify-start items-center bg-white"> */}
       <RouterProvider router={appRouter} />
+      {/* </div> */}
       {/* <Outlet /> */}
     </Provider>
   );

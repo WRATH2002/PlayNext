@@ -69,13 +69,13 @@ const RelatedVideos = (props) => {
       <div className="w-full h-auto flex flex-col lg:flex-row md:flex-row">
         <img
           src={props?.data?.snippet?.thumbnails?.medium?.url}
-          className="w-full md:w-[175px] lg:w-[175px] rounded-lg"
+          className="w-full md:w-[175px] lg:w-[175px] rounded-xl"
         ></img>
-        <div className=" w-full md:w-[calc(100%-175px)]  lg:w-[calc(100%-175px)] pl-[10px] flex flex-col text-[#aaaaaa] font-[roboto]">
-          <span className=" w-full min-h-[20px] max-h-[42px] text-15px  text-[14px] flex items-start justify-start overflow-hidden text-white line-clamp-2 text-ellipsis ">
+        <div className=" w-full md:w-[calc(100%-175px)]  lg:w-[calc(100%-175px)] pl-[10px] flex flex-col text-[#6F6F6F] font-[roboto]">
+          <span className=" w-full min-h-[20px] max-h-[42px] text-15px  text-[14px] flex items-start justify-start overflow-hidden text-black line-clamp-2 text-ellipsis font-semibold ">
             {props.data.snippet.title}
           </span>
-          <span className=" w-full h-[17px] text-[12px] mt-[3px]">
+          <span className=" w-full h-[17px] text-[12px] mt-[3px] text-black">
             {props.data.snippet.channelTitle}
           </span>
           <div className="mt-[-3px]">

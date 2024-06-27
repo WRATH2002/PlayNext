@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import LiveChat from "./LiveChat";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import VideoDescription from "./VideoDescription";
-import { COMMENT_API } from "../utils/constants";
+import { COMMENT_API, nameList } from "../utils/constants";
 import Comments from "./Comments";
 import RelatedVideos from "./RelatedVideos";
 import RelatedVideosContainer from "./RelatedVideosContainer";
@@ -57,6 +57,8 @@ const WatchVideoPage = () => {
     );
   };
 
+  // ----------------
+
   // const getRealtedVideos = async () => {
   //   const data = await fetch(
   //     COMMENT_API +
@@ -70,7 +72,7 @@ const WatchVideoPage = () => {
   //   setComments(json?.items);
   // };
 
-  console.log(comments);
+  // console.log(comments);
 
   // function alertDownload() {
   //   var x = document.getElementById("download");
@@ -94,31 +96,54 @@ const WatchVideoPage = () => {
           This video can not be downloaded
         </span>
       </div> */}
-      <div className="w-full flex flex-col lg:flex-row md:flex-row p-0">
-        <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[25px] md:p-[25px]">
+      <div className="w-full flex flex-col lg:flex-row md:flex-row p-0 bg-[#F7F7F7]">
+        <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[20px] h-auto md:p-[20px] ">
           <iframe
-            className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] fixed md:static lg:static border-b border-[#aaaaaa] md:border-b-[0] lg:border-b-[0] z-40"
+            className="player  drop-shadow-sm rounded-0  lg:rounded-2xl md:rounded-2xl  fixed md:static lg:static border-b border-[#717171] md:border-b-[0] lg:border-b-[0] z-40 "
             controls
             autoPlay
-            width="560"
-            height="315"
+            // width="560"
+            // height="315"
             src={
               "https://www.youtube.com/embed/" +
               searchParams.get("v") +
               "?autoplay=1"
             }
+            // src="https://www.youtube.com/embed/NMeUvG1kw08?si=FVYN1nPlJ-tSBYeK"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
-          <div className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] flex md:hidden lg:hidden"></div>
+          <div className=" w-full rounded-0  lg:rounded-xl md:rounded-xl h-[220px]  lg:h-[550px] md:h-[550px] flex md:hidden lg:hidden drop-shadow-sm "></div>
           <span>
             <span></span>
           </span>
+
+          {/* <div className="h-[55px] fixed z-10 w-full p-[10px] py-[10px] flex md:hidden lg:hidden justify-start items-center overflow-x-scroll font-medium font-[robotoT] bg-white">
+            <div className="h-full w-auto px-[10px] mr-[10px] rounded-xl flex justify-center items-center text-[14px] bg-[#242424] whitespace-nowrap cursor-pointer text-white sticky top-0">
+              All
+            </div>
+            <div className="h-full w-auto px-[10px] mr-[10px] rounded-xl flex justify-center items-center text-[14px] bg-[#f3f3f3] whitespace-nowrap cursor-pointer">
+              From This Creator
+            </div>
+            <div className="h-full w-auto px-[10px] mr-[10px] rounded-xl flex justify-center items-center text-[14px] bg-[#f3f3f3] whitespace-nowrap cursor-pointer">
+              Related
+            </div>
+            {nameList.map((data) => {
+              return (
+                <div className="h-full w-auto px-[10px] mr-[10px] rounded-xl flex justify-center items-center text-[14px] bg-[#f3f3f3] cursor-pointer">
+                  {data}
+                </div>
+              );
+            })}
+          </div>
+          <div className="h-[55px]   w-full p-[10px] py-[10px] flex md:hidden lg:hidden justify-start items-center overflow-x-scroll font-medium font-[robotoT]"></div> */}
           {/* <div id="description"></div>
           <div id="comment"></div> */}
-          <VideoDescription id={searchParams.get("v")} />
+          <div className="w-full z-30">
+            <VideoDescription id={searchParams.get("v")} />
+          </div>
           <Comments
             comments={comments}
             id={searchParams.get("v")}
@@ -126,7 +151,7 @@ const WatchVideoPage = () => {
             ur={u}
           />
         </div>
-        <div className="flex lg:flex md:flex w-full lg:w-[calc(30%)] md:w-[calc(30%)] h-auto mr-[25px]  flex-col items-start  mt-[25px] rounded-xl ">
+        <div className="flex lg:flex md:flex w-full lg:w-[calc(30%)] md:w-[calc(30%)] h-auto mr-[20px]  flex-col items-start  mt-[20px] rounded-xl ">
           <RelatedVideosContainer />
         </div>
 
