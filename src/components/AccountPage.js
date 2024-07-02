@@ -6,7 +6,6 @@ import VideoCard from "./VideoCard";
 
 const PLayList = (props) => {
   // playlist videso
-  // "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=PL8vL-_f27zDT6ub0kkaqKUQlIGvTSlY_F&key=AIzaSyCSwoDWoumDqQom87XrwOrmG27LTCGWLIc&maxResults=50";
 
   const [playlists, setPlaylists] = useState([]);
 
