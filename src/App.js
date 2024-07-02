@@ -8,6 +8,7 @@ import VideoContainer from "./components/VideoContainer";
 import WatchVideoPage from "./components/WatchVideoPage";
 import Body from "./components/Body";
 import SearchVideo from "./components/SearchVideo";
+import AccountPage from "./components/AccountPage";
 
 function App() {
   return (
@@ -34,8 +35,14 @@ const appRouter = createBrowserRouter([
         element: <VideoContainer />,
       },
       {
+        path: "channel",
+        // element: <WatchVideoPage />,
+        element: <AccountPage />,
+      },
+      {
         path: "watch",
         element: <WatchVideoPage />,
+        // element: <AccountPage />,
       },
       {
         path: "search",

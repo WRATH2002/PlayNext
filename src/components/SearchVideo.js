@@ -950,7 +950,7 @@ const SearchVideo = () => {
       {/* <img className="w-[100px] " src={props.data.thumbnails.dafault}></img> */}
       {searchVideos === undefined ? (
         <>
-          <div className="w-full h-auto flex flex-col justify-start items-start p-[20px]  bg-[white] border border-[#eeeeee] rounded-2xl drop-shadow-sm">
+          <div className="w-full h-auto flex flex-col justify-start items-start  p-0 md:p-[20px] lg:p-[20px]  bg-[white] border border-[#eeeeee] rounded-2xl drop-shadow-sm">
             {Array(9)
               ?.fill(" ")
               ?.map((e, index) => {
@@ -968,8 +968,8 @@ const SearchVideo = () => {
         </>
       ) : (
         <>
-          <div className="w-full h-auto flex flex-col justify-start items-start p-[20px]  bg-[white] border border-[#eeeeee] rounded-2xl drop-shadow-sm">
-            <span className="w-full flex justify-between items-center font-[roboto] text-[16px] mb-[15px] mt-[-5px]">
+          <div className="w-full h-auto flex flex-col justify-start items-start  p-0 md:p-[20px] lg:p-[20px]  bg-[white] border border-[#eeeeee] rounded-2xl drop-shadow-sm">
+            <span className="w-full justify-between items-center font-[roboto] text-[16px] mb-[15px] mt-[-5px] hidden md:flex lg:flex">
               <span className="text-[#676767]">
                 Showing Result for :{" "}
                 <span className=" font-semibold text-[black]">

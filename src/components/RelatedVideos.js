@@ -68,6 +68,7 @@ const RelatedVideos = (props) => {
     <>
       <div className="w-full h-auto flex flex-col lg:flex-row md:flex-row">
         <img
+          loading="lazy"
           src={props?.data?.snippet?.thumbnails?.medium?.url}
           className="w-full md:w-[175px] lg:w-[175px] rounded-xl"
         ></img>

@@ -1,5 +1,5 @@
 // require("dotenv").config();
-const API_KEY = process.env.REACT_APP_API_KEY;
+export const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const VIDEO_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
@@ -245,6 +245,15 @@ export const VIEW_COUNT =
   "https://www.googleapis.com/youtube/v3/videos?part=statistics&key=" +
   API_KEY +
   "&id=";
+
+export const TAGS =
+  "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=";
+
+export const TAGS2 = "&key=" + API_KEY;
+
+export const RELATED_VIDEOS_1 =
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&relatedToVideoId=";
+export const RELATED_VIDEOS_2 = "&key=" + API_KEY;
 
 export const buttonList = [
   "All",

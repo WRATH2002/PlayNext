@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiDislike, BiLike, BiSolidDislike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
 import { SEARCH_BY_ID } from "../utils/constants";
@@ -8,6 +8,7 @@ import { FiBarChart2 } from "react-icons/fi";
 const Comment = ({ comment }) => {
   const [duration, setDuration] = useState("");
   const [year, setYear] = useState(0);
+  const [error, setError] = useState(false);
   const [month, setMonth] = useState(0);
   const [week, setWeek] = useState(0);
   const [day, setDay] = useState(0);
@@ -88,15 +89,36 @@ const Comment = ({ comment }) => {
       setSecond(seconds);
     }
   }
+
+  // function hideImg() {
+  //   document.getElementById("HideImg").style.display = "none";
+  // }
   return (
     <>
       <div className=" flex justify-start items-start my-[10px] md:my-[5px] lg:my-[5px] px-[10px] lg:px-0 md:px-0 ">
+        {/* <div className="h-9 w-9 rounded-full bg-[#f3f3f3] text-[15px] font-semibold flex justify-center items-center"> */}
         <img
-          className="h-9 w-9 rounded-full bg-[#f3f3f3]"
+          className={
+            "h-9 w-9 rounded-full bg-[#f3f3f3]" + (error ? " hidden" : " flex")
+          }
           src={
             comment?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl
           }
+          alt={comment?.snippet?.topLevelComment?.snippet?.authorDisplayName.charAt(
+            1
+          )}
+          // onerror={setError(true)}
         ></img>
+        {/* {error ? (
+            <>
+              {comment?.snippet?.topLevelComment?.snippet?.authorDisplayName
+                .charAt(1)
+                .toUpperCase()}
+            </>
+          ) : (
+            <></>
+          )} */}
+        {/* </div> */}
         <div className="flex flex-col w-full  ml-[25px] text-[13px] lg:text-[15px] md:text-[15px] text-[black] font-[roboto]">
           <span className="flex items-center justify-start font-[400] text-[13px] h-[20px] text-[#6F6F6F] ">
             {comment?.snippet?.topLevelComment?.snippet?.authorDisplayName}
@@ -192,12 +214,54 @@ const Comments = (props) => {
   const [url, setUrl] = useState("");
   const [com, setCom] = useState("");
 
+  const [index, setIndex] = useState(0);
+
+  const [currComment, setCurrComment] = useState("");
+  const [currUrl, setCurrUrl] = useState("");
+
+  const firstDivRef = useRef(null);
+  const [firstDivHeight, setFirstDivHeight] = useState(0);
+  const commentRef = useRef(null);
+
+  useEffect(() => {
+    if (props?.comments) {
+      setTimeout(() => {
+        setCurrComment(
+          props?.comments[index]?.snippet?.topLevelComment?.snippet
+            ?.textOriginal
+        );
+        setCurrUrl(
+          props?.comments[index]?.snippet?.topLevelComment?.snippet
+            ?.authorProfileImageUrl
+        );
+        setIndex(index + 1);
+      }, 5000);
+    }
+    if (props?.comments) {
+      // console.log(props?.comments);
+      // console.log(props?.comments[1]);
+    }
+  }, [index, props?.comments]);
+
+  useEffect(() => {
+    const updateSecondDivHeight = () => {
+      if (firstDivRef.current) {
+        setFirstDivHeight(firstDivRef.current.clientHeight);
+      }
+    };
+
+    window.addEventListener("resize", updateSecondDivHeight);
+    updateSecondDivHeight();
+
+    return () => window.removeEventListener("resize", updateSecondDivHeight);
+  }, []);
+
   const result = async () => {
     // const data = await fetch(SEARCH_BY_ID + videoId);
     const data = await fetch(SEARCH_BY_ID + props.id);
     const json = await data.json();
-    console.log("result");
-    console.log(json);
+    console.log("Comment Count API is called --- under 'Comments'");
+    // console.log(json);
     // setVideoInfo(json?.items[0]);
     // let cView = addCommas(json?.items[0]?.statistics?.viewCount);
     // setCommaV(cView);
@@ -210,9 +274,11 @@ const Comments = (props) => {
 
   useEffect(() => {
     // setVideoId(params.get("v"));
-    console.log("comeentthlijafUWBUIsbvoubsIDVsdvSVB");
-    console.log(props.comments);
-    result();
+    // console.log("comeentthlijafUWBUIsbvoubsIDVsdvSVB");
+    // console.log(props.comments);
+    if (comment == 0) {
+      result();
+    }
     setUrl(props?.ur);
     setCom(props?.comm);
   }, [props.id]);
@@ -221,44 +287,58 @@ const Comments = (props) => {
     <>
       {showComment === true ? (
         <div
-          className="h-[calc(100dvh-280px)] w-full fixed bottom-0 z-50 bg-[#ffffff] overflow-y-scroll"
-          style={{ transition: ".2s" }}
+          className=" flex flex-col justify-start items-start w-full fixed bottom-0 z-50 bg-[#ffffff] overflow-y-scroll"
+          style={{
+            transition: ".2s",
+            height: `calc(100dvh - (${props?.firstDivHeight}px + 60px))`,
+            zIndex: "99",
+          }}
         >
-          <div className="fixed bg-[#ffffff] w-full h-[60px] border-b-[2px] border-[#f3f3f3]">
-            <div className="h-[20px] flex justify-center items-center w-full flex-col ">
-              <div className="w-[60px] h-[4px] rounded-full bg-[#f3f3f3] "></div>
-            </div>
-            <div className="w-full h-[full] flex justify-between items-center px-[10px] text-[#000000] font-[roboto] ">
-              <span className="text-[17px] ">
-                <b>Comments</b>
-              </span>
-              <span>
-                <RxCross2
-                  className="text-[25px] text-[black]"
-                  onClick={() => {
-                    setShowComment(false);
-                  }}
-                />
-              </span>
-            </div>
-          </div>
-          <div className="bg-[#ffffff] w-full h-[60px] border-b-[2px] border-[#f3f3f3]"></div>
+          {/* <div className="player w-full"></div> */}
+          <div
+            className="w-full flex flex-col justify-start items-start"
+            // style={{  }}
+          >
+            <div className="fixed bg-[#ffffff] flex flex-col justify-start text-start w-full  border-b-[1.5px] border-[#f3f3f3]">
+              <div className="h-[20px] flex justify-center items-center w-full flex-col ">
+                <div className="w-[60px] h-[4px] rounded-full bg-[#f3f3f3] "></div>
+              </div>
+              <div className="w-full flex justify-between items-center h-[30px]">
+                <div className="w-full h-full flex justify-between items-center px-[10px] text-[#000000] font-[roboto] ">
+                  <span className="text-[20px] ">
+                    <b>Comments</b>
+                  </span>
+                  <span>
+                    <RxCross2
+                      className="text-[25px] text-[black]"
+                      onClick={() => {
+                        setShowComment(false);
+                      }}
+                    />
+                  </span>
+                </div>
+              </div>
 
-          {/* <div className="w-full h-full p-[10px] text-white rounded-xl  md:bg-transparent lg:translate-x-0">
+              <div className="flex justify-start items-center px-[10px] my-[10px] h-[40px] text-[15px] font-[roboto]  ">
+                <div className="h-[40px] rounded-2xl flex justify-center items-center px-[15px] w-auto bg-[#2e2e2e] text-[white]">
+                  Top
+                </div>
+                <div className="h-[40px] rounded-2xl flex justify-center items-center px-[15px] w-auto bg-[#f3f3f3] text-[#000000] ml-[10px]">
+                  Newest
+                </div>
+              </div>
+            </div>
+            <div className="bg-[#ffffff] w-full h-[110px]"></div>
+
+            {/* <div className="w-full h-full p-[10px] text-white rounded-xl  md:bg-transparent lg:translate-x-0">
             <pre className="h-full  w-full font-[roboto] overflow-x-auto whitespace-pre-wrap bg-[#222222] p-[10px] rounded-xl break-words text-[12px] lg:text-[14px] md:text-[14px] leading-[18px] overflow-hidden"> */}
-          <div className="flex justify-start items-center px-[10px] mt-[10px] text-[15px] font-[roboto]  ">
-            <div className="h-[40px] rounded-xl flex justify-center items-center px-[15px] w-auto bg-[#232323] text-[white]">
-              Top
-            </div>
-            <div className="h-[40px] rounded-xl flex justify-center items-center px-[15px] w-auto bg-[#585858] text-[white] ml-[10px]">
-              Newest
-            </div>
-          </div>
-          {props.comments?.map((comment) => {
-            return <Comment comment={comment} />;
-          })}
-          {/* </pre>
+
+            {props.comments?.map((comment) => {
+              return <Comment comment={comment} />;
+            })}
+            {/* </pre>
           </div> */}
+          </div>
         </div>
       ) : (
         <div
@@ -266,14 +346,14 @@ const Comments = (props) => {
           style={{ transition: ".2s" }}
         ></div>
       )}
-      <div className="w-full before:h-auto block md:hidden lg:hidden  drop-shadow-sm p-[10px] md:p-[20px] lg:p-[20px] bg-[white] mt-[10px] rounded-2xl ">
+      <div className="w-full before:h-auto block md:hidden lg:hidden  drop-shadow-none md:drop-shadow-sm lg:drop-shadow-sm p-[10px] md:p-[20px] lg:p-[20px] bg-[white] mt-[10px] rounded-2xl ">
         <div
-          className="w-full h-auto  bg-[#ffffff] py-[5px] rounded-xl font-[roboto] flex flex-col"
+          className="w-full h-auto  bg-[#f3f3f3] py-[5px] rounded-xl font-[roboto] flex flex-col"
           onClick={() => {
             setShowComment(true);
           }}
         >
-          <div className="px-[0px] w-full text-black text-[13px]">
+          <div className="px-[10px] w-full text-black text-[13px]">
             <b>Comments</b>{" "}
             <span className="ml-[7px] text-[#6F6F6F] text-[12px]">
               {comment === 0 ? (
@@ -294,9 +374,9 @@ const Comments = (props) => {
             </span>{" "}
           </div>
           <div className="w-full h-9 flex px-[10px] justify-start items-center my-[4px]">
-            <img className="h-9 w-9 rounded-full" src={props?.ur}></img>
+            <img className="h-9 w-9 rounded-full" src={currUrl}></img>
             <span className="text-[black] text-[13px] font-[roboto] ml-[10px] w-[calc(100%-46px)] overflow-hidden text-ellipsis line-clamp-1 h-[20px]">
-              {props?.comm}
+              {currComment}
             </span>
           </div>
         </div>

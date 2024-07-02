@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   SEARCH_BY_ID,
   SUBSCRIBERS_COUNT,
@@ -44,7 +44,7 @@ const VideoDescription = (props) => {
   const [commaL, setCommaL] = useState("");
   const [commaV, setCommaV] = useState("");
 
-  const [duration, setDuration] = useState("");
+  const [id, setId] = useState("");
   const [year, setYear] = useState(0);
   const [month, setMonth] = useState(0);
   const [week, setWeek] = useState(0);
@@ -58,8 +58,6 @@ const VideoDescription = (props) => {
   const [save, setSave] = useState(false);
 
   useEffect(() => {
-    console.log("propssssssssssssssssssssss");
-    console.log(props);
     if (date.length != 0) {
       calculateDurationFromDate(date);
     }
@@ -130,8 +128,7 @@ const VideoDescription = (props) => {
     // const data = await fetch(SEARCH_BY_ID + videoId);
     const data = await fetch(SEARCH_BY_ID + props.id);
     const json = await data.json();
-    console.log("result");
-    console.log(json);
+    console.log("Video Description API is called --- under 'VideoDescription'");
     setVideoInfo(json?.items[0]);
     let cView = addCommas(json?.items[0]?.statistics?.viewCount);
     setCommaV(cView);
@@ -158,29 +155,39 @@ const VideoDescription = (props) => {
   const getChannelLogo = async () => {
     const data = await fetch(CHANNEL_LOGO_API + snippet.channelId);
     const jsonData = await data.json();
-    console.log("logo");
-    console.log(jsonData);
+    console.log("Channel Logo API is called --- under 'VideoDescription'");
+    // console.log(jsonData);
+    setId(jsonData?.items[0]?.id);
     setChannelLogo(jsonData?.items[0]?.snippet?.thumbnails?.default?.url);
   };
 
   const getSubscribersCount = async () => {
     const data = await fetch(SUBSCRIBERS_COUNT + snippet.channelId);
     const jsonData = await data.json();
-    console.log("sub count");
-    console.log(jsonData);
+    console.log("Subscriber Count API is called --- under 'VideoDescription'");
+    // console.log(jsonData);
     setSubscribersCount(jsonData?.items[0].statistics.subscriberCount);
   };
 
   useEffect(() => {
     // setVideoId(params.get("v"));
+    // if (videoInfo.length == 0) {
     result();
+    // }
   }, [props.id]);
 
   useEffect(() => {
-    if (videoInfo.length !== 0) {
-      getChannelLogo();
-      getSubscribersCount();
-    }
+    // if (channelLogo.length == 0 && videoInfo) {
+    getChannelLogo();
+    // }
+    // if (subscribersCount.length == 0 && videoInfo) {
+    getSubscribersCount();
+    // }
+    // if (videoInfo.length !== 0) {
+    //   getChannelLogo();
+    //   getSubscribersCount();
+    // }
+    props?.setChanName(videoInfo?.snippet?.channelTitle);
   }, [videoInfo]);
 
   const showMore = () => {
@@ -199,14 +206,18 @@ const VideoDescription = (props) => {
     }
   }
 
-  if (videoInfo.length === 0) return;
+  // if (videoInfo.length === 0) return;
 
   return (
     <>
       {showDescription === true ? (
         <div
-          className="h-[calc(100dvh-280px)] w-full fixed block md:hidden lg:hidden bottom-0 z-50 bg-[#ffffff] font-[roboto] overflow-y-scroll"
-          style={{ transition: ".2s" }}
+          className=" w-full fixed block md:hidden lg:hidden bottom-0 z-50 bg-[#ffffff] font-[roboto] overflow-y-scroll"
+          style={{
+            transition: ".2s",
+            height: `calc(100dvh - (${props?.firstDivHeight}px + 60px))`,
+            zIndex: "99",
+          }}
         >
           <div className="fixed bg-[#ffffff] w-full h-[60px] border-b-[2px] border-[#f3f3f3]">
             <div className="h-[20px] flex justify-center items-center w-full flex-col ">
@@ -284,12 +295,12 @@ const VideoDescription = (props) => {
         ></div>
       )}
 
-      <div className="w-full  mt-[10px] p-[10px] md:p-[20px] lg:p-[20px] rounded-2xl drop-shadow-sm flex flex-col bg-[white] font-[roboto] z-30">
-        <span className="w-full font-[700] line-clamp-2 text-ellipsis text-[black] font-[roboto]  text-[18px] md:text-[22px] lg:text-[22px] max-h-[50px] md:max-h-[65px]  lg:max-h-[65px] px-[10px] lg:px-0 md:px-0 overflow-hidden whitespace-normal mt-[-7px] ">
+      <div className="w-full  mt-[10px] p-[10px] md:p-[20px] lg:p-[20px] rounded-2xl drop-shadow-none md:drop-shadow-sm lg:drop-shadow-sm flex flex-col bg-[white] font-[roboto] z-30">
+        <span className="w-full font-[700] line-clamp-2 text-ellipsis text-[black] font-[roboto]  text-[18px] md:text-[22px] lg:text-[22px] max-h-[50px] md:max-h-[65px]  lg:max-h-[65px] px-[0px] lg:px-0 md:px-0 overflow-hidden whitespace-normal mt-[-7px] ">
           <b>{videoInfo?.snippet?.title}</b>
         </span>
         <span
-          className="text-[#6F6F6F] text-[12px] px-[10px] lg:px-0 md:px-0 flex md:hidden lg:hidden justify-start items-center mt-[3px]"
+          className="text-[#6F6F6F] text-[12px] px-[0px] lg:px-0 md:px-0 flex md:hidden lg:hidden justify-start items-center mt-[9px]"
           onClick={() => {
             setShowDescription(true);
           }}
@@ -348,53 +359,60 @@ const VideoDescription = (props) => {
           </span>
         </span>
         <div className="h-[85px] lg:h-[40px] md:h-[40px] items-center w-full flex flex-col lg:flex-row md:flex-row justify-between lg:justify-start md:justify-start  mt-[15px] lg:mt-[10px] md:mt-[10px]">
-          <div className="flex w-full lg:w-[40%] md:w-[40%] justify-between md:justify-start lg:justify-start items-center px-[10px] lg:px-0 md:px-0">
-            <div className="flex justify-start items-center w-auto ">
-              <img
-                alt="channel_logo"
-                src={channelLogo}
-                className="flex justify-start items-center h-9 w-9 rounded-full"
-              />
-              <div className="flex flex-col justify-center items-start h-[35px] ml-[15px] mt-0 md:mt-[2px] lg:mt-[2px] w-full">
-                <span className="font-semibold flex justify-start text-ellipsis whitespace-nowrap items-center w-full lg:w-[100%] md:w-[100%]  overflow-hidden text-black text-[14px] md:text-[16px] lg:text-[16px]">
-                  {videoInfo?.snippet?.channelTitle}{" "}
-                  <span className="ml-[7px] text-[12px] text-[#6F6F6F] flex md:hidden lg:hidden justify-start items-center font-normal">
-                    {subscribersCount / 1000000 != 0 ? (
-                      <>{subscribersCount / 1000000}M</>
-                    ) : subscribersCount / 100000 != 0 ? (
-                      <>{subscribersCount / 100000}L</>
-                    ) : subscribersCount / 1000 != 0 ? (
-                      <>{subscribersCount / 1000}K</>
-                    ) : (
-                      <>{subscribersCount}</>
-                    )}
+          <div className="flex w-full lg:w-[40%] md:w-[40%] justify-between md:justify-start lg:justify-start items-center px-[0px] lg:px-0 md:px-0">
+            <Link
+              className="w-full flex justify-start items-center"
+              key={id}
+              to={"/channel?id=" + id}
+            >
+              <div className=" w-auto  flex justify-start items-center">
+                <img
+                  alt="channel_logo"
+                  src={channelLogo}
+                  className="flex justify-start items-center h-9 w-9 rounded-full"
+                />
+                <div className="flex flex-col justify-center items-start h-[35px] ml-[15px] mt-0 md:mt-[2px] lg:mt-[2px] w-full">
+                  <span className="font-semibold flex justify-start text-ellipsis whitespace-nowrap items-center w-full lg:w-[100%] md:w-[100%]  overflow-hidden text-black text-[14px] md:text-[16px] lg:text-[16px]">
+                    {videoInfo?.snippet?.channelTitle}{" "}
+                    <span className="ml-[7px] text-[12px] text-[#6F6F6F] flex md:hidden lg:hidden justify-start items-center font-normal">
+                      {subscribersCount / 1000000 != 0 ? (
+                        <>{subscribersCount / 1000000}M</>
+                      ) : subscribersCount / 100000 != 0 ? (
+                        <>{subscribersCount / 100000}L</>
+                      ) : subscribersCount / 1000 != 0 ? (
+                        <>{subscribersCount / 1000}K</>
+                      ) : (
+                        <>{subscribersCount}</>
+                      )}
+                    </span>
                   </span>
-                </span>
-                <span className="text-[12px] md:flex lg:flex justify-center items-start mt-[4px] text-[#6F6F6F] hidden">
-                  {subscribersCount / 1000000 != 0 ? (
-                    <>{subscribersCount / 1000000}M subscribers</>
-                  ) : subscribersCount / 100000 != 0 ? (
-                    <>{subscribersCount / 100000}L subscribers</>
-                  ) : subscribersCount / 1000 != 0 ? (
-                    <>{subscribersCount / 1000}K subscribers</>
-                  ) : (
-                    <>{subscribersCount} subscribers</>
-                  )}
-                  {/* {subscribersCount}K subscribers */}
-                </span>
+                  <span className="text-[12px] md:flex lg:flex justify-center items-start mt-[4px] text-[#6F6F6F] hidden">
+                    {subscribersCount / 1000000 != 0 ? (
+                      <>{subscribersCount / 1000000}M subscribers</>
+                    ) : subscribersCount / 100000 != 0 ? (
+                      <>{subscribersCount / 100000}L subscribers</>
+                    ) : subscribersCount / 1000 != 0 ? (
+                      <>{subscribersCount / 1000}K subscribers</>
+                    ) : (
+                      <>{subscribersCount} subscribers</>
+                    )}
+                    {/* {subscribersCount}K subscribers */}
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
+
             <div className="flex justify-center items-center ml-[15px] w-auto">
               <button className="flex justify-center items-center rounded-full   bg-[#f3f3f3] text-black text-whiterounded-full px-[14px] h-[35px]  ml-[20px] text-[12px] lg:text-[13px] md:text-[13px]  hover:bg-[#d9d9d9] font-[roboto] font-normal">
                 Join
               </button>
-              <button className="flex justify-center items-center border-none  rounded-full px-[14px] h-[35px]  ml-[10px] text-[12px] lg:text-[13px] md:text-[13px]   hover:bg-[#dadada] bg-[black] text-white font-[roboto] font-normal">
+              <button className="flex justify-center items-center border-none  rounded-full px-[14px] h-[35px]  ml-[10px] text-[12px] lg:text-[13px] md:text-[13px]   hover:bg-[#dadada] bg-[#000000] text-[white] font-[roboto] font-normal">
                 Subscribe
               </button>
             </div>
           </div>
-          <div className="flex w-full lg:w-[60%] md:w-[60%]  justify-between md:justify-end lg:justify-end items-center px-[0px] pr-[10px] lg:px-0 md:px-0 overflow-x-scroll  ">
-            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full  h-[35px] ml-[7px] lg:ml-[10px] md:ml-[10px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold bg-[#f3f3f3] text-black ">
+          <div className="flex w-full lg:w-[60%] md:w-[60%]  justify-between md:justify-end lg:justify-end items-center px-[0px] pr-[0px] lg:px-0 md:px-0 overflow-x-scroll  ">
+            <button className="flex justify-center items-center border-none whitespace-nowrap rounded-full  h-[35px] ml-[0px] lg:ml-[10px] md:ml-[10px] text-[12px] lg:text-[13px] md:text-[13px] font-semibold bg-[#f3f3f3] text-black ">
               <div
                 className=" h-full flex justify-center items-center px-[14px] rounded-l-full  "
                 onClick={() => {

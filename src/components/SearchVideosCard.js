@@ -232,7 +232,7 @@ const SearchVideosCard = (props) => {
               {props.data.snippet.channelTitle}
             </span>
           </div>
-          <span className="text-[12.8px] text-[#6F6F6F]  h-[35px] w-full overflow-hidden line-clamp-2 text-ellipsis">
+          <span className="text-[13px] text-[#6F6F6F]  h-[35px] w-full overflow-hidden line-clamp-3 text-ellipsis">
             {props.data.snippet.description}
           </span>
         </div>
@@ -254,11 +254,11 @@ const SearchVideosCard = (props) => {
             src={channelLogo}
           ></img>
           <div className="flex flex-col justify-start ml-[16px] w-[calc(100%-66px)]  md:w-[calc(100%-56px)] lg:w-[calc(100%-56px)]  ">
-            <span className=" w-full text-[15px]  lg:w-[300px] md:w-[300px] min-h-[20px] max-h-[46px] lg:min-h-[24px]  lg:max-h-[46px] md:min-h-[24px] md:max-h-[46px]  overflow-hidden line-clamp-2 text-ellipsis text-[#000000] font-[roboto] font-[300] ">
+            <span className=" w-full text-[15px]  lg:w-[300px] md:w-[300px] min-h-[20px] max-h-[46px] lg:min-h-[24px]  lg:max-h-[46px] md:min-h-[24px] md:max-h-[46px]  overflow-hidden line-clamp-2 text-ellipsis text-[#000000] font-[roboto] font-semibold">
               <b>{props.data.snippet.title}</b>
             </span>
 
-            <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[11.8px] md:text-[12.8px] lg:text-[12.8px] text-[#6F6F6F] font-[roboto] font-[300] tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
+            <div className="w-full lg:w-[300px] md:w-[300px] flex flex-row lg:flex-col md:flex-col text-[12px] md:text-[13px] lg:text-[13px] text-[#6F6F6F] font-[robotoT] font-medium tracking-wider justify-start items-center md:justify-center md::items-start lg:justify-center lg:items-start">
               <span className="max-w-[45%] h-[15px] text-ellipsis overflow-hidden w-auto flex justify-start items-center  ">
                 {props.data.snippet.channelTitle}
               </span>

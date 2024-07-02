@@ -1,12 +1,12 @@
 import ytlogo from "../assets/img/vid2.png";
 import logo from "../assets/img/logo6.png";
 import { IoMdMic } from "react-icons/io";
-import { BiSearch } from "react-icons/bi";
-import { GoSearch } from "react-icons/go";
-import { FiArrowLeft, FiBarChart2 } from "react-icons/fi";
+import { BiSearch, BiUser } from "react-icons/bi";
+import { GoDownload, GoHistory, GoSearch } from "react-icons/go";
+import { FiAirplay, FiArrowLeft, FiBarChart2 } from "react-icons/fi";
 import { RxCross2, RxQuestionMarkCircled } from "react-icons/rx";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BsBell, BsPerson } from "react-icons/bs";
 import { AiOutlineLogout } from "react-icons/ai";
 import Sidebar from "./Sidebar";
@@ -24,15 +24,21 @@ import { buttonList } from "../utils/constants";
 import Button from "./Button";
 import { FaArrowLeft } from "react-icons/fa6";
 import { GoArrowLeft } from "react-icons/go";
-import { PiBellSimple, PiMicrophone, PiMicrophoneFill } from "react-icons/pi";
+import {
+  PiBell,
+  PiBellBold,
+  PiBellSimple,
+  PiMicrophone,
+  PiMicrophoneFill,
+} from "react-icons/pi";
 import { FiSearch } from "react-icons/fi";
 import { MdMicNone, MdPerson } from "react-icons/md";
 // Sidebar Icons
 import { PiBellSimpleFill } from "react-icons/pi";
 import { TiVideo } from "react-icons/ti";
-import { LuSearchX } from "react-icons/lu";
-import { IoVideocamOutline } from "react-icons/io5";
-import { RiMicLine } from "react-icons/ri";
+import { LuLogOut, LuSearchX, LuUser } from "react-icons/lu";
+import { IoTrendingUpOutline, IoVideocamOutline } from "react-icons/io5";
+import { RiMicLine, RiUser3Line, RiUser6Line } from "react-icons/ri";
 import { HiOutlineVideoCamera } from "react-icons/hi2";
 // import { useHistory } from "react-router-dom";
 const Navbar = () => {
@@ -96,7 +102,11 @@ const Navbar = () => {
             <div className="w-full h-[45px] flex justify-center items-center mb-[10px] px-[10px]">
               <div
                 className="w-[30px] h-[45px] rounded-full flex justify-center items-center mr-[10px] "
-                onClick={() => setPSearch(false)}
+                onClick={() => {
+                  setSearchQuery("");
+                  setPSearch(false);
+                  setSearchSuggestion([]);
+                }}
               >
                 <GoArrowLeft className="text-[25px] text-[#000000]" />
               </div>
@@ -162,6 +172,8 @@ const Navbar = () => {
                       to={"/search?v=" + search}
                       onClick={() => {
                         setSearchQuery("");
+                        setPSearch(false);
+                        setSearchSuggestion([]);
                       }}
                     >
                       <SearchSuggestionContainer data={search} />
@@ -237,10 +249,10 @@ const Navbar = () => {
       ) : (
         <>
           <div
-            className="h-[60px] w-full flex lg:fixed md:fixed justify-center items-center   z-2 bg-[#ffffffc9] backdrop-blur-2xl"
+            className="h-[60px] w-full flex fixed justify-center items-center   z-2 bg-[#ffffffc9] backdrop-blur-2xl"
             style={{ zIndex: "2" }}
           >
-            <div className="h-[40px] flex justify-start items-center w-[60%]  lg:w-[28%] md:w-[28%] z-2 text-[#000000]">
+            <div className="h-[40px] flex justify-start items-center w-[60%]  lg:w-[28%] md:w-[28%] z-50 text-[#000000]">
               {sidebarFlag ? (
                 <RxCross2
                   onClick={() => sidebarHandler()}
@@ -257,16 +269,18 @@ const Navbar = () => {
                 className="h-[33px] cursor-pointer hidden md:flex  lg:flex"
                 src={ytlogo}
               ></img> */}
-              <Link className="w-auto h-auto " to={"/"}>
+              <Link
+                className="w-auto h-auto flex justify-center items-center "
+                to={"/"}
+              >
                 <img
-                  className="h-[29px] cursor-pointer mr-[5px] ml-[20px] md:ml-0 lg:ml-0"
+                  className="h-[29px] cursor-pointer mr-[5px] ml-[-10px] md:ml-0 lg:ml-0"
                   src={logo}
                 ></img>
+                <span className="font-[kenya] font-normal text-[23px] tracking-[0.005rem]">
+                  PlayNext
+                </span>
               </Link>
-
-              <span className="font-[kenya] font-normal text-[23px] tracking-[0.005rem]">
-                PlayNext
-              </span>
             </div>
             <div className=" h-[40px] w-[40%] lg:w-[72%] md:w-[72%] flex justify-between items-start ">
               <div className="w-[30%] lg:w-[80%] md:w-[80%] flex justify-end lg:justify-start items-start">
@@ -386,16 +400,16 @@ const Navbar = () => {
                 </div>
                 <div className="flex justify-center items-center mx-0 lg:mx-[5px] md:mx-[5px]  w-[40px] h-[40px] rounded-full cursor-pointer ">
                   {" "}
-                  <PiBellSimple className="text-[20px] " />
+                  <PiBellBold className="text-[20px] " />
                 </div>
                 <div className="flex justify-center items-center mx-0 lg:mx-[5px] md:mx-[5px] mr-[10px] lg:mr-[20px] md:lg:mr-[20px]  w-[40px] h-[40px] rounded-full cursor-pointer ">
                   {" "}
-                  <BsPerson className="text-[21px] " />
+                  <BiUser className="text-[21px] " />
                 </div>
               </div>
             </div>
           </div>
-          <div className="h-[60px]  w-full flex justify-center items-center"></div>
+          <div className="h-[60px] flex  w-full md:flex lg:flex justify-center items-center"></div>
         </>
       )}
 
@@ -404,17 +418,17 @@ const Navbar = () => {
         {sidebarFlag === false ? (
           <>
             <div
-              className="fixed h-[calc(100vh-60px)] w-[230px] ml-[-230px] flex-shrink-0 flex flex-col items-center pt-[20px]  bg-transparent p-[20px] pr-0  text-[black] z-50 overflow-hidden"
+              className="fixed h-[calc(100dvh-60px)] left-0 md:w-[230px] lg:w-[230px] ml-[-50%] md:ml-[-230px] lg:ml-[-230px] flex-shrink-0 flex flex-col items-center p-[0px] md:p-[20px]  bg-transparent lg:p-[20px] pr-0  text-[black] z-50 overflow-hidden"
               style={{ transition: ".3s" }}
             >
-              <div className="w-full h-full rounded-2xl bg-white border border-[#eeeeee] flex flex-col justify-start items-start p-[20px] drop-shadow-sm">
+              <div className="w-full h-full rounded-none md:rounded-2xl lg:rounded-2xl bg-white border border-[#eeeeee] flex flex-col justify-start items-start p-[20px] drop-shadow-sm">
                 <div className="w-full h-full overflow-y-scroll flex flex-col justify-start items-start">
                   <Sidebar />
                 </div>
               </div>
             </div>
             <div
-              className=" h-[calc(100vh-60px)] w-[230px] ml-[-230px] flex-shrink-0 flex flex-col items-center pt-[20px] border-none  bg-transparent p-[20px] pr-0  text-[black] z-50"
+              className=" h-[calc(100dvh-60px)] w-[230px] ml-[-230px] flex-shrink-0 flex flex-col items-center pt-[20px] border-none  bg-transparent p-[20px] pr-0  text-[black] z-50"
               style={{ transition: ".3s" }}
             ></div>
             {/* <div
@@ -425,17 +439,19 @@ const Navbar = () => {
         ) : (
           <>
             <div
-              className="fixed h-[calc(100vh-60px)] w-[230px] flex-shrink-0 flex flex-col items-center pt-[20px]  bg-transparent p-[20px] pr-0  text-[black] z-50"
-              style={{ transition: ".3s" }}
+              className="fixed h-[calc(100dvh-60px)] w-[60%] left-0 md:w-[230px] lg:w-[230px] flex-shrink-0 flex flex-col items-center p-0 md:p-[20px] lg:p-[20px]   bg-transparent  pr-0 md:pr-[0px] lg:pr-[0px]  text-[black] z-50 font-[roboto] font-semibold"
+              style={{ transition: ".3s", zIndex: "100" }}
             >
-              <div className="w-full h-full rounded-2xl bg-white border border-[#eeeeee] flex flex-col justify-start items-start p-[20px] drop-shadow-sm">
+              <div className="w-full h-full rounded-none md:rounded-2xl lg:rounded-2xl bg-white border-[0px] md:border lg:border border-[#eeeeee] flex flex-col justify-start items-start p-[20px] drop-shadow-sm">
                 <div className="w-full h-full overflow-y-scroll flex flex-col justify-start items-start">
-                  <Sidebar />
+                  <div className="w-full h-full flex flex-col justify-start items-start">
+                    <Sidebar />
+                  </div>
                 </div>
               </div>
             </div>
             <div
-              className=" h-[calc(100vh-60px)] w-[230px] flex-shrink-0 flex flex-col items-center pt-[20px]  bg-transparent p-[20px] pr-0 border-none  text-[black] z-50"
+              className=" h-[calc(100dvh-60px)] w-[230px]  flex-shrink-0 hidden md:flex lg:flex flex-col items-center pt-[20px]  bg-transparent p-[20px] pr-0 border-none  text-[black] z-50"
               style={{ transition: ".3s" }}
             ></div>
             {/* <div
@@ -444,7 +460,7 @@ const Navbar = () => {
             ></div> */}
           </>
         )}
-        <div className="w-full bg-[#f7f7f7] ">
+        <div className="w-full bg-[#ffffff] md:bg-[#f7f7f7] lg:bg-[#f7f7f7] ">
           {/* <div className="flex w-full overflow-x-scroll">
             {buttonList.map((btnName) => {
               return (

@@ -14,8 +14,6 @@ const VideoCard = (props) => {
   const [second, setSecond] = useState(0);
   const [date, setDate] = useState(props?.data?.snippet?.publishedAt);
   useEffect(() => {
-    console.log("propssssssssssssssssssssss");
-    console.log(props);
     if (date.length != 0) {
       calculateDurationFromDate(date);
     }
@@ -86,7 +84,7 @@ const VideoCard = (props) => {
     var i;
     var tempString;
     var temp = props.data.contentDetails.duration;
-    console.log(temp);
+    // console.log(temp);
     var tempTwo = temp.replace("PT", "");
     var tempThree = tempTwo.replace("H", ":");
     var tempfour = tempThree.replace("M", ":");
@@ -105,19 +103,21 @@ const VideoCard = (props) => {
     // for (i = tempfive.length - 1; i >= 0; i--) {
     //   console.log(tempfive[i]);
     // }
-    console.log(tempfive);
+    // console.log(tempfive);
     setDuration(tempfive);
   }
 
   useEffect(() => {
-    getChannelLogo();
+    if (channelLogo.length == 0) {
+      getChannelLogo();
+    }
     changeDuration();
   }, []);
 
   const getChannelLogo = async () => {
     const data = await fetch(CHANNEL_LOGO_API + props.data.snippet.channelId);
     const json = await data.json();
-    console.log(json);
+    console.log("Channel Logo API is called ... under 'VideoCard'");
     setChannelLogo(json?.items[0]?.snippet?.thumbnails?.default?.url);
   };
 
@@ -127,6 +127,7 @@ const VideoCard = (props) => {
         <img
           className=" player object-cover rounded-0 md:rounded-xl lg:rounded-xl"
           src={props?.data?.snippet?.thumbnails?.high?.url}
+          loading="lazy"
           // src="https://images.pexels.com/photos/21338012/pexels-photo-21338012/free-photo-of-sierra-de-organos-national-park.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         ></img>
         <span className="flex justify-end items-center px-[4px] mt-[-31px] h-[33px] w-full">
@@ -142,6 +143,7 @@ const VideoCard = (props) => {
           <img
             className="rounded-full w-[40px] aspect-square ml-[10px] lg:ml-0 md:ml-0 bg-[#F7F7F7]"
             src={channelLogo}
+            loading="lazy"
           ></img>
           <div className="flex flex-col justify-start ml-[16px] w-[calc(100%-66px)]  md:w-[calc(100%-56px)] lg:w-[calc(100%-56px)]  ">
             <span className=" w-full text-[14px] mf:text-[16px] lg:text-[16px]  min-h-[20px] max-h-[46px] lg:min-h-[24px]  lg:max-h-[46px] md:min-h-[24px] md:max-h-[46px]  overflow-hidden line-clamp-2 text-ellipsis text-[#000000] font-[roboto] font-[700] pr-[10px] tracking-[.4px] ">
