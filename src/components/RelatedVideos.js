@@ -67,11 +67,13 @@ const RelatedVideos = (props) => {
   return (
     <>
       <div className="w-full h-auto flex flex-col lg:flex-row md:flex-row">
-        <img
-          loading="lazy"
-          src={props?.data?.snippet?.thumbnails?.medium?.url}
-          className="w-full md:w-[175px] lg:w-[175px] rounded-xl"
-        ></img>
+        <div className="w-full md:w-[175px] lg:w-[175px] rounded-xl ">
+          <img
+            loading="lazy"
+            src={props?.data?.snippet?.thumbnails?.medium?.url}
+            className="player rounded-xl"
+          ></img>
+        </div>
         <div className=" w-full md:w-[calc(100%-175px)]  lg:w-[calc(100%-175px)] pl-[10px] flex flex-col text-[#6F6F6F] font-[roboto]">
           <span className=" w-full min-h-[20px] max-h-[42px] text-15px  text-[14px] flex items-start justify-start overflow-hidden text-black line-clamp-2 text-ellipsis font-semibold ">
             {props.data.snippet.title}
