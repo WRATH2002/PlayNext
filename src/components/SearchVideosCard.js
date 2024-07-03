@@ -157,7 +157,7 @@ const SearchVideosCard = (props) => {
         <div className="min-w-[350px] rounded-[10px] flex justify-center items-center ">
           <img
             className="min-w-[350px] rounded-[10px] "
-            src={props?.data?.snippet?.thumbnails?.medium?.url}
+            src={props?.data?.snippet?.thumbnails?.high?.url}
           ></img>
           <span className=" min-w-[350px] ml-[-350px] flex justify-end items-center px-[4px] mt-auto h-[33px] w-full">
             <span className="text-[white] text-[13px] px-[4.7px] rounded-[3px] bg-[#000000dc]">
