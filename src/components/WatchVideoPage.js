@@ -141,12 +141,12 @@ const WatchVideoPage = () => {
 
   useEffect(() => {
     sidebarHandler();
-    if (comments == undefined) {
-      getComments();
-    }
-    if (tags == undefined) {
-      getTags();
-    }
+    // if (comments == undefined) {
+    getComments();
+    // }
+    // if (tags == undefined) {
+    getTags();
+    // }
   }, [searchParams.get("v")]);
 
   // const videoInfo = async () => {
@@ -315,10 +315,10 @@ const WatchVideoPage = () => {
               >
                 <div className="w-full h-[40px] flex flex-row justify-between items-center px-[10px]">
                   <div className=" h-full flex flex-col justify-start items-start">
-                    <span className="text-[20px] font-[robotoT] font-bold">
+                    <span className="text-[20px] font-[robotoT] h-[30px] overflow-hidden text-ellipsis line-clamp-1 font-bold">
                       {playName}
                     </span>
-                    <span className="text-[13px] font-[roboto] font-normal text-[#6f6f6f]">
+                    <span className="text-[13px] font-[roboto] h-0 font-normal text-[#6f6f6f]">
                       {playlists[0]?.snippet?.channelTitle} {pos + 1}/
                       {playlists?.length}
                     </span>
@@ -424,10 +424,10 @@ const WatchVideoPage = () => {
                     {/* <span className="font-normal text-[13px] text-[#6f6f6f] mr-[5px]">
                   Playlist
                 </span> */}
-                    <span className="text-[20px] font-[robotoT] font-bold">
+                    <span className="text-[20px] h-[30px]  overflow-hidden text-ellipsis line-clamp-1 font-[robotoT] font-bold">
                       {playName}
                     </span>
-                    <span className="text-[13px] font-[roboto] font-normal text-[#6f6f6f]">
+                    <span className="text-[13px] font-[roboto] font-normal h-0 text-[#6f6f6f]">
                       {playlists[0]?.snippet?.channelTitle} {pos + 1}/
                       {playlists?.length}
                     </span>
