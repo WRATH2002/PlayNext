@@ -224,29 +224,29 @@ const Comments = (props) => {
   const commentRef = useRef(null);
 
   useEffect(() => {
-    if (index == 0) {
-      setCurrComment(
-        props?.comments[index]?.snippet?.topLevelComment?.snippet?.textOriginal
-      );
-      setCurrUrl(
-        props?.comments[index]?.snippet?.topLevelComment?.snippet
-          ?.authorProfileImageUrl
-      );
-    } else {
-      if (props?.comments) {
-        setTimeout(() => {
-          setCurrComment(
-            props?.comments[index]?.snippet?.topLevelComment?.snippet
-              ?.textOriginal
-          );
-          setCurrUrl(
-            props?.comments[index]?.snippet?.topLevelComment?.snippet
-              ?.authorProfileImageUrl
-          );
-          setIndex(index + 1);
-        }, 5000);
-      }
+    // if (index == 0) {
+    //   setCurrComment(
+    //     props?.comments[index]?.snippet?.topLevelComment?.snippet?.textOriginal
+    //   );
+    //   setCurrUrl(
+    //     props?.comments[index]?.snippet?.topLevelComment?.snippet
+    //       ?.authorProfileImageUrl
+    //   );
+    // } else {
+    if (props?.comments) {
+      setTimeout(() => {
+        setCurrComment(
+          props?.comments[index]?.snippet?.topLevelComment?.snippet
+            ?.textOriginal
+        );
+        setCurrUrl(
+          props?.comments[index]?.snippet?.topLevelComment?.snippet
+            ?.authorProfileImageUrl
+        );
+        setIndex(index + 1);
+      }, 5000);
     }
+    // }
     if (props?.comments) {
       // console.log(props?.comments);
       // console.log(props?.comments[1]);
