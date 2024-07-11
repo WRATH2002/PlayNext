@@ -51,50 +51,21 @@ const AiVideoSummary = (props) => {
   // };
 
   const fetchTranscript = async () => {
-    setError("");
-
-    try {
-      // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-      // const apiUrl = `https://cors-anywhere.herokuapp.com/https://www.youtube.com/watch?v=${props?.videoId}`;
-      // const apiUrl = `https://youtube-transcript-api-url/${props?.videoId}`;
-      const transcriptData = await YoutubeTranscript.fetchTranscript(
-        props?.videoId
-        // apiUrl
-      );
-      setTranscript(transcriptData);
-
-      console.log(
-        "TRANSCRITPTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
-      );
-      console.log(transcriptData);
-    } catch (err) {
-      setError(
-        "Failed to fetch transcript. Make sure the video ID is correct and the video has transcripts available."
-      );
-    } finally {
-      // setLoading(false);
-    }
-
     // setError("");
 
     // try {
-    //   const apiUrl = `/api/fetch-transcript`;
-    //   const response = await fetch(apiUrl, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ videoId: props?.videoId }),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok");
-    //   }
-
-    //   const transcriptData = await response.json();
+    //   // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    //   // const apiUrl = `https://cors-anywhere.herokuapp.com/https://www.youtube.com/watch?v=${props?.videoId}`;
+    //   // const apiUrl = `https://youtube-transcript-api-url/${props?.videoId}`;
+    //   const transcriptData = await YoutubeTranscript.fetchTranscript(
+    //     props?.videoId
+    //     // apiUrl
+    //   );
     //   setTranscript(transcriptData);
 
-    //   console.log("TRANSCRIPT FETCHED");
+    //   console.log(
+    //     "TRANSCRITPTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    //   );
     //   console.log(transcriptData);
     // } catch (err) {
     //   setError(
@@ -103,6 +74,35 @@ const AiVideoSummary = (props) => {
     // } finally {
     //   // setLoading(false);
     // }
+
+    setError("");
+
+    try {
+      const apiUrl = `/api/fetch-transcript`;
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ videoId: props?.videoId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const transcriptData = await response.json();
+      setTranscript(transcriptData);
+
+      console.log("TRANSCRIPT FETCHED");
+      console.log(transcriptData);
+    } catch (err) {
+      setError(
+        "Failed to fetch transcript. Make sure the video ID is correct and the video has transcripts available."
+      );
+    } finally {
+      // setLoading(false);
+    }
   };
 
   useEffect(() => {
