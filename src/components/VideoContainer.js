@@ -21,6 +21,7 @@ const VideoContainer = () => {
       const json = await data.json();
       console.log("Home Screen Video API is called ... under 'VideoContainer'");
       setVideos(json.items);
+      console.log(json.items);
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Assuming 403 status code indicates the API limit has been reached
