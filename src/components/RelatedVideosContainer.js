@@ -55,7 +55,7 @@ const RelatedVideosContainer = (props) => {
   // };
   return (
     <>
-      <div className="w-full h-auto flex flex-col bg-[#ffffff] p-[0px] md:p-[20px] lg:p-[20px] rounded-none md:rounded-2xl lg:rounded-2xl drop-shadow-none md:drop-shadow-sm lg:drop-shadow-sm">
+      <div className="w-full h-auto flex flex-col bg-[#ffffff] p-[0px] md:p-[20px] lg:p-[20px] pb-[0px] rounded-none md:rounded-2xl lg:rounded-2xl drop-shadow-none md:drop-shadow-sm lg:drop-shadow-sm mb-[20px]">
         {videos.length == undefined ? (
           <>
             <div className="h-[40px]  w-full  hidden md:flex lg:flex justify-start items-center overflow-x-scroll font-medium font-[robotoT] bg-white mb-[20px]">

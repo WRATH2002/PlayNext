@@ -73,13 +73,43 @@ const Navbar = () => {
   }
 
   const SearchSuggestionn = async () => {
+    // const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
+    // const targetUrl = `http://suggestqueries.google.com/complete/search?client=chrome&ds=yt&q=${searchQuery}`;
+    // const fullUrl = corsProxyUrl + targetUrl;
+
+    // const options = {
+    //   method: "GET", // Using GET request instead of POST
+    //   headers: {
+    //     "x-requested-with": "XMLHttpRequest",
+    //   },
+    // };
+
+    // try {
+    //   console.log("Sending request to CORS proxy...");
+    //   console.log("Full URL:", fullUrl);
+
+    //   const response = await fetch(fullUrl, options);
+    //   const result = await response.json();
+
+    //   console.log("Response status:", response.status);
+    //   console.log("Response text:", result);
+    //   setSearchSuggestion(result[1]);
+
+    //   // Check if the response is okay
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    //   }
+
+    //   console.log("Result:", result);
+    // } catch (error) {
+    //   console.error("Error fetching data:", error);
+    // }
+
     const data = await fetch(SEARCH_API + searchQuery);
     const json = await data.json();
     console.log("search suggestion");
     console.log(json);
     setSearchSuggestion(json[1]);
-    // console.log(searSuggestion);
-    // setVideos(json.items);
   };
 
   // dispatch(addItemName({ name, isVeg, price, qty, id }));
@@ -163,9 +193,9 @@ const Navbar = () => {
                 </div>
               )} */}
 
-              {searchSuggestion.length > 0 ? (
+              {searchSuggestion?.length > 0 ? (
                 <div className="w-[calc(100%-36px)] ml-[18px]  mt-[15px] px-[10px] drop-shadow-sm  rounded-2xl bg-[#ffffff] py-[10px]">
-                  {searchSuggestion.map((search, index) => (
+                  {searchSuggestion?.map((search, index) => (
                     <Link
                       className="w-full  h-[40px] flex justify-start items-center hover:bg-[#f7f7f7] rounded-lg"
                       key={index}
@@ -180,7 +210,7 @@ const Navbar = () => {
                     </Link>
                   ))}
                 </div>
-              ) : searchSuggestion.length == 0 && searchQuery.length > 0 ? (
+              ) : searchSuggestion?.length == 0 && searchQuery.length > 0 ? (
                 <div className="w-[calc(100%-36px)] ml-[18px]  mt-[15px]  p-[10px] drop-shadow-sm rounded-2xl bg-[#ffffff]">
                   <div className="w-full  h-auto flex flex-col justify-center items-start  rounded-lg">
                     <div className="p-[15px] h-[20px] text-[black] font-[roboto]  w-full flex justify-between items-center bg-transparent">
@@ -318,9 +348,9 @@ const Navbar = () => {
                     </div>
                   )}
 
-                  {searchSuggestion.length > 0 ? (
+                  {searchSuggestion?.length > 0 ? (
                     <div className="w-full  mt-[20px] px-[10px] drop-shadow-sm border border-[#ececec] rounded-2xl bg-[#ffffff] py-[10px]">
-                      {searchSuggestion.map((search, index) => (
+                      {searchSuggestion?.map((search, index) => (
                         <Link
                           className="w-full  h-[40px] flex justify-start items-center hover:bg-[#f7f7f7] rounded-lg"
                           key={index}
@@ -334,7 +364,8 @@ const Navbar = () => {
                         </Link>
                       ))}
                     </div>
-                  ) : searchSuggestion.length == 0 && searchQuery.length > 0 ? (
+                  ) : searchSuggestion?.length == 0 &&
+                    searchQuery.length > 0 ? (
                     <div className="w-full  mt-[20px] p-[10px] drop-shadow-sm rounded-2xl border border-[#ececec] bg-[#ffffff]">
                       <div className="w-full  h-auto flex flex-col justify-center items-start  rounded-lg">
                         <div className="p-[15px] h-[20px] text-[black] font-[roboto]  w-full flex justify-between items-center bg-transparent">

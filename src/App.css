@@ -24,6 +24,16 @@
   src: url(./assets/font/kenyan\ coffee\ rg.otf);
 }
 
+#blurred {
+  position: absolute;
+  align-self: center;
+  filter: blur(10px);
+  width: 130%;
+  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+  opacity: 0.5;
+}
+
 ::-webkit-scrollbar {
   height: 3px;
   width: 2.4px;
@@ -46,6 +56,27 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.iframe-container {
+  position: relative; /* Necessary for proper shadow placement */
+  display: inline-block; /* Adjust as needed for your layout */
+}
+
+.iframe-container::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* Top, right, bottom, left */
+  /* Adjust shadow properties as desired */
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent black for shadow */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15); /* Subtle blur */
+  border-radius: 4px; /* Rounded corners for a smooth look */
+  z-index: -1; /* Place behind the iframe to avoid overlapping content */
+}
+
+.iframe {
+  /* Adjust iframe styles as needed (width, height, etc.) */
+  border: none; /* Remove default iframe border */
 }
 
 .hide {

@@ -1,7 +1,7 @@
 const YoutubeTranscript = require("youtube-transcript");
 
 module.exports = async (req, res) => {
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     try {
       const { videoId } = req.body;
 

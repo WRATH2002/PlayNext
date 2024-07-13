@@ -26,6 +26,7 @@ const WatchVideoPage = () => {
   const [liveChatFlag, setLiveChatFlag] = useState(false);
   const [playlistFlag, setPlaylistFlag] = useState(true);
   const [videoFlag, setVideoFlag] = useState(true);
+  const [chatModal, setChatModal] = useState(false);
   const [comments, setComments] = useState();
   const [c, setC] = useState("");
   const [u, setU] = useState("");
@@ -47,284 +48,284 @@ const WatchVideoPage = () => {
   const [playName, setPlayName] = useState("");
   const [summary, setSummary] = useState("");
   // const DeepSpeech = require("deepspeech");
-  // useEffect(() => {
-  //   if (playlistFlag) {
-  //     setTimeout(() => {
-  //       setVideoFlag(true);
-  //     }, 1000);
-  //   } else {
-  //     setVideoFlag(false);
-  //   }
-  // }, [playlistFlag]);
+  useEffect(() => {
+    if (playlistFlag) {
+      setTimeout(() => {
+        setVideoFlag(true);
+      }, 1000);
+    } else {
+      setVideoFlag(false);
+    }
+  }, [playlistFlag]);
 
-  // useEffect(() => {
-  //   const updateHeight = () => {
-  //     if (firstDivRef.current) {
-  //       const height = firstDivRef.current.clientHeight;
-  //       setFirstDivHeight(height);
-  //       console.log("heightttttttttt----------------------------");
-  //       console.log(height);
-  //     }
-  //   };
-  //   updateHeight();
-  //   window.addEventListener("resize", updateHeight);
-  //   return () => window.removeEventListener("resize", updateHeight);
-  // }, [playlistFlag]);
+  useEffect(() => {
+    const updateHeight = () => {
+      if (firstDivRef.current) {
+        const height = firstDivRef.current.clientHeight;
+        setFirstDivHeight(height);
+        console.log("heightttttttttt----------------------------");
+        console.log(height);
+      }
+    };
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [playlistFlag]);
 
-  // useEffect(() => {
-  //   playlists.map((data, index) => {
-  //     if (
-  //       data?.snippet?.resourceId?.videoId ==
-  //       searchParams.get("v").split("?plid=")[0]
-  //     ) {
-  //       setPos(data?.snippet?.position);
-  //     }
-  //   });
-  // }, [playlists]);
+  useEffect(() => {
+    playlists.map((data, index) => {
+      if (
+        data?.snippet?.resourceId?.videoId ==
+        searchParams.get("v").split("?plid=")[0]
+      ) {
+        setPos(data?.snippet?.position);
+      }
+    });
+  }, [playlists]);
 
-  // useEffect(() => {
-  //   if (playName.length == 0) {
-  //     fetchName();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (playName.length == 0) {
+      fetchName();
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   if (playlistFlag) {
-  //     if (secondDivRef.current) {
-  //       secondDivRef.current.style.height = `${firstDivHeight}px`;
-  //     }
-  //   } else {
-  //     if (secondDivRef.current) {
-  //       secondDivRef.current.style.height = `auto`;
-  //     }
-  //   }
+  useEffect(() => {
+    if (playlistFlag) {
+      if (secondDivRef.current) {
+        secondDivRef.current.style.height = `${firstDivHeight}px`;
+      }
+    } else {
+      if (secondDivRef.current) {
+        secondDivRef.current.style.height = `auto`;
+      }
+    }
 
-  //   if (thirdDivRef.current) {
-  //     if (playlistFlag) {
-  //       thirdDivRef.current.style.height = `calc(100dvh - (${firstDivHeight}px + 60px))`;
-  //     } else {
-  //       thirdDivRef.current.style.height = "90px";
-  //     }
-  //   }
-  // }, [firstDivHeight, playlistFlag]);
+    if (thirdDivRef.current) {
+      if (playlistFlag) {
+        thirdDivRef.current.style.height = `calc(100dvh - (${firstDivHeight}px + 60px))`;
+      } else {
+        thirdDivRef.current.style.height = "90px";
+      }
+    }
+  }, [firstDivHeight, playlistFlag]);
 
-  // useEffect(() => {
-  //   if (searchParams.get("v").split("?plid=").length === 2) {
-  //     if (playlists.length == 0) {
-  //       fetchPlaylists();
-  //     }
-  //   }
-  // }, [searchParams.get("v").split("?plid=")[1]]);
+  useEffect(() => {
+    if (searchParams.get("v").split("?plid=").length === 2) {
+      if (playlists.length == 0) {
+        fetchPlaylists();
+      }
+    }
+  }, [searchParams.get("v").split("?plid=")[1]]);
 
-  // const fetchPlaylists = async () => {
-  //   const data = await fetch(
-  //     "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=" +
-  //       searchParams.get("v").split("?plid=")[1] +
-  //       "&key=" +
-  //       API_KEY +
-  //       "&maxResults=50"
-  //   );
+  const fetchPlaylists = async () => {
+    const data = await fetch(
+      "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=" +
+        searchParams.get("v").split("?plid=")[1] +
+        "&key=" +
+        API_KEY +
+        "&maxResults=50"
+    );
+    const json = await data.json();
+    console.log("PlayList Videos API is called -- under 'WatchVideoPage'");
+    setPlaylists(json?.items);
+  };
+
+  const fetchName = async () => {
+    const dataName = await fetch(
+      "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=" +
+        searchParams.get("v").split("?plid=")[1] +
+        "&key=" +
+        API_KEY
+    );
+
+    const jsonName = await dataName.json();
+    console.log("PlayList Name API is called --- under 'WatchVideoPage'");
+    setPlayName(jsonName?.items[0]?.snippet?.title);
+  };
+
+  useEffect(() => {
+    sidebarHandler();
+    // if (comments == undefined) {
+    getComments();
+    // }
+    // if (tags == undefined) {
+    getTags();
+    // }
+  }, [searchParams.get("v")]);
+
+  // const videoInfo = async () => {
+  //   const data = await fetch(CHANNEL_LOGO_API + props.data.snippet.channelId);
   //   const json = await data.json();
-  //   console.log("PlayList Videos API is called -- under 'WatchVideoPage'");
-  //   setPlaylists(json?.items);
+  //   console.log(json);
+  //   setChannelLogo(json?.items[0]?.snippet?.thumbnails?.default?.url);
   // };
 
-  // const fetchName = async () => {
-  //   const dataName = await fetch(
-  //     "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=" +
-  //       searchParams.get("v").split("?plid=")[1] +
-  //       "&key=" +
-  //       API_KEY
-  //   );
+  function sidebarHandler() {
+    dispatch(closeSidebar());
+  }
 
-  //   const jsonName = await dataName.json();
-  //   console.log("PlayList Name API is called --- under 'WatchVideoPage'");
-  //   setPlayName(jsonName?.items[0]?.snippet?.title);
-  // };
+  function toggleLiveChat() {
+    setLiveChatFlag(!liveChatFlag);
+  }
 
-  // useEffect(() => {
-  //   sidebarHandler();
-  //   // if (comments == undefined) {
-  //   getComments();
-  //   // }
-  //   // if (tags == undefined) {
-  //   getTags();
-  //   // }
-  // }, [searchParams.get("v")]);
+  const getComments = async () => {
+    const data = await fetch(
+      COMMENT_API +
+        "&textFormat=plainText&part=snippet&videoId=" +
+        searchParams.get("v").split("?plid=")[0] +
+        "&maxResults=50"
+    );
+    const json = await data.json();
+    console.log("Video comments API is called --- under 'WatchVideoPage'");
+    setComments(json?.items);
+    setC(json?.items[0]?.snippet?.topLevelComment?.snippet?.textOriginal);
+    setU(
+      json?.items[0]?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl
+    );
+  };
 
-  // // const videoInfo = async () => {
-  // //   const data = await fetch(CHANNEL_LOGO_API + props.data.snippet.channelId);
-  // //   const json = await data.json();
-  // //   console.log(json);
-  // //   setChannelLogo(json?.items[0]?.snippet?.thumbnails?.default?.url);
-  // // };
+  const getTags = async () => {
+    const data = await fetch(
+      TAGS + searchParams.get("v").split("?plid=")[0] + TAGS2
+    );
+    const json = await data.json();
+    console.log("Video related Tags API is called --- under 'WatchVideoPage'");
+    setTags(json?.items[0]?.snippet?.tags);
+  };
 
-  // function sidebarHandler() {
-  //   dispatch(closeSidebar());
-  // }
-
-  // function toggleLiveChat() {
-  //   setLiveChatFlag(!liveChatFlag);
-  // }
-
-  // const getComments = async () => {
+  // const getRealtedVideos = async () => {
   //   const data = await fetch(
   //     COMMENT_API +
   //       "&textFormat=plainText&part=snippet&videoId=" +
-  //       searchParams.get("v").split("?plid=")[0] +
+  //       searchParams.get("v") +
   //       "&maxResults=50"
   //   );
   //   const json = await data.json();
-  //   console.log("Video comments API is called --- under 'WatchVideoPage'");
+  //   console.log("Comment");
+  //   console.log(json);
   //   setComments(json?.items);
-  //   setC(json?.items[0]?.snippet?.topLevelComment?.snippet?.textOriginal);
-  //   setU(
-  //     json?.items[0]?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl
-  //   );
   // };
 
-  // const getTags = async () => {
-  //   const data = await fetch(
-  //     TAGS + searchParams.get("v").split("?plid=")[0] + TAGS2
-  //   );
-  //   const json = await data.json();
-  //   console.log("Video related Tags API is called --- under 'WatchVideoPage'");
-  //   setTags(json?.items[0]?.snippet?.tags);
-  // };
+  // console.log(comments);
 
-  // // const getRealtedVideos = async () => {
-  // //   const data = await fetch(
-  // //     COMMENT_API +
-  // //       "&textFormat=plainText&part=snippet&videoId=" +
-  // //       searchParams.get("v") +
-  // //       "&maxResults=50"
-  // //   );
-  // //   const json = await data.json();
-  // //   console.log("Comment");
-  // //   console.log(json);
-  // //   setComments(json?.items);
-  // // };
+  // function alertDownload() {
+  //   var x = document.getElementById("download");
 
-  // // console.log(comments);
+  //   // Add the "show" class to DIV
+  //   x.className = "show";
 
-  // // function alertDownload() {
-  // //   var x = document.getElementById("download");
+  //   // After 3 seconds, remove the show class from DIV
+  //   setTimeout(function () {
+  //     x.className = x.className.replace("show", "");
+  //   }, 1500);
+  // }
+  useEffect(() => {
+    // generateSummary();
+  }, []);
+  const generateSummary = async () => {
+    try {
+      // Extract video ID from YouTube link
+      const videoId = extractYouTubeVideoId(
+        "https://www.youtube.com/watch?v=YD-wagrJjhU"
+      );
 
-  // //   // Add the "show" class to DIV
-  // //   x.className = "show";
+      // Fetch video details including transcript
+      const videoDetails = await fetchVideoDetails(videoId);
 
-  // //   // After 3 seconds, remove the show class from DIV
-  // //   setTimeout(function () {
-  // //     x.className = x.className.replace("show", "");
-  // //   }, 1500);
-  // // }
-  // useEffect(() => {
-  //   // generateSummary();
-  // }, []);
-  // const generateSummary = async () => {
-  //   try {
-  //     // Extract video ID from YouTube link
-  //     const videoId = extractYouTubeVideoId(
-  //       "https://www.youtube.com/watch?v=YD-wagrJjhU"
-  //     );
+      let transcript = videoDetails?.snippet?.transcript;
 
-  //     // Fetch video details including transcript
-  //     const videoDetails = await fetchVideoDetails(videoId);
+      // If transcript is not available, fetch transcript using speech-to-text API
+      if (!transcript) {
+        transcript = await fetchTranscriptFromSpeechToText(videoId);
+      }
 
-  //     let transcript = videoDetails?.snippet?.transcript;
+      // Send transcript to Gemini API to generate summary
+      const geminiResponse = await axios.post("GEMINI_API_ENDPOINT", {
+        transcript,
+        apiKey: "AIzaSyD4RJ5W16CnLostbXLAR6Dut71OTZdfO-4",
+      });
 
-  //     // If transcript is not available, fetch transcript using speech-to-text API
-  //     if (!transcript) {
-  //       transcript = await fetchTranscriptFromSpeechToText(videoId);
-  //     }
+      // Extract and format summary from Gemini response
+      const summaryText = geminiResponse.data.summary;
+      const formattedSummary = summaryText
+        .split("\n")
+        .map((line) => `- ${line}`)
+        .join("\n");
 
-  //     // Send transcript to Gemini API to generate summary
-  //     const geminiResponse = await axios.post("GEMINI_API_ENDPOINT", {
-  //       transcript,
-  //       apiKey: "AIzaSyD4RJ5W16CnLostbXLAR6Dut71OTZdfO-4",
-  //     });
+      // Display summary
+      setSummary(formattedSummary);
+      console.log(
+        "summmaryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+      );
+      console.log(formattedSummary);
+    } catch (error) {
+      console.error("Error generating summary:", error);
+    }
+  };
 
-  //     // Extract and format summary from Gemini response
-  //     const summaryText = geminiResponse.data.summary;
-  //     const formattedSummary = summaryText
-  //       .split("\n")
-  //       .map((line) => `- ${line}`)
-  //       .join("\n");
+  const fetchVideoDetails = async (videoId) => {
+    try {
+      const response = await axios.get(
+        "https://www.googleapis.com/youtube/v3/videos",
+        {
+          params: {
+            part: "snippet",
+            id: videoId,
+            key: "AIzaSyCaGqENvGS-L_oSbLwUMNqwfEBGVwH5yqU",
+          },
+        }
+      );
 
-  //     // Display summary
-  //     setSummary(formattedSummary);
-  //     console.log(
-  //       "summmaryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
-  //     );
-  //     console.log(formattedSummary);
-  //   } catch (error) {
-  //     console.error("Error generating summary:", error);
-  //   }
-  // };
+      return response.data.items[0];
+    } catch (error) {
+      console.error("Error fetching video details:", error);
+      return null;
+    }
+  };
 
-  // const fetchVideoDetails = async (videoId) => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://www.googleapis.com/youtube/v3/videos",
-  //       {
-  //         params: {
-  //           part: "snippet",
-  //           id: videoId,
-  //           key: "AIzaSyCaGqENvGS-L_oSbLwUMNqwfEBGVwH5yqU",
-  //         },
-  //       }
-  //     );
+  const fetchTranscriptFromSpeechToText = async (videoId) => {
+    try {
+      // Implement speech-to-text logic to fetch transcript from video's audio
+      // Example: Use a library like Google Cloud Speech-to-Text or Mozilla DeepSpeech
+      // For simplicity, simulate a sample transcript
+      return "Sample transcript from speech-to-text API";
+    } catch (error) {
+      console.error("Error fetching transcript:", error);
+      return "";
+    }
+  };
 
-  //     return response.data.items[0];
-  //   } catch (error) {
-  //     console.error("Error fetching video details:", error);
-  //     return null;
-  //   }
-  // };
+  const extractYouTubeVideoId = (videoLink) => {
+    const match = videoLink.match(/[?&]v=([^&]+)/);
+    return match ? match[1] : null;
+  };
 
   // const fetchTranscriptFromSpeechToText = async (videoId) => {
   //   try {
-  //     // Implement speech-to-text logic to fetch transcript from video's audio
-  //     // Example: Use a library like Google Cloud Speech-to-Text or Mozilla DeepSpeech
-  //     // For simplicity, simulate a sample transcript
-  //     return "Sample transcript from speech-to-text API";
+  //     // Example usage of DeepSpeech
+  //     const modelPath = "path/to/deepspeech-0.9.3-models.pbmm"; // Replace with actual path to your DeepSpeech model file
+  //     const scorerPath = "path/to/deepspeech-0.9.3-models.scorer"; // Replace with actual path to your DeepSpeech scorer file
+  //     const deepSpeechModel = new DeepSpeech.Model(modelPath);
+  //     deepSpeechModel.enableExternalScorer(scorerPath);
+
+  //     // Get video URL
+  //     const videoUrl = `https://www.youtube.com/watch?v=YD-wagrJjhU`;
+
+  //     // Fetch audio file from video URL and convert to text
+  //     // You would typically use a library like axios to fetch the audio, process it, and get text
+
+  //     // For demonstration purposes, let's simulate processing
+  //     const simulatedTranscript = "Sample transcript from DeepSpeech";
+
+  //     console.log(
+  //       "Video audio downloaded and then transcribed to text  -------------------------------------"
+  //     );
+  //     console.log(simulatedTranscript);
   //   } catch (error) {
   //     console.error("Error fetching transcript:", error);
-  //     return "";
+  //     return ""; // Return empty string or handle error case appropriately
   //   }
   // };
-
-  // const extractYouTubeVideoId = (videoLink) => {
-  //   const match = videoLink.match(/[?&]v=([^&]+)/);
-  //   return match ? match[1] : null;
-  // };
-
-  // // const fetchTranscriptFromSpeechToText = async (videoId) => {
-  // //   try {
-  // //     // Example usage of DeepSpeech
-  // //     const modelPath = "path/to/deepspeech-0.9.3-models.pbmm"; // Replace with actual path to your DeepSpeech model file
-  // //     const scorerPath = "path/to/deepspeech-0.9.3-models.scorer"; // Replace with actual path to your DeepSpeech scorer file
-  // //     const deepSpeechModel = new DeepSpeech.Model(modelPath);
-  // //     deepSpeechModel.enableExternalScorer(scorerPath);
-
-  // //     // Get video URL
-  // //     const videoUrl = `https://www.youtube.com/watch?v=YD-wagrJjhU`;
-
-  // //     // Fetch audio file from video URL and convert to text
-  // //     // You would typically use a library like axios to fetch the audio, process it, and get text
-
-  // //     // For demonstration purposes, let's simulate processing
-  // //     const simulatedTranscript = "Sample transcript from DeepSpeech";
-
-  // //     console.log(
-  // //       "Video audio downloaded and then transcribed to text  -------------------------------------"
-  // //     );
-  // //     console.log(simulatedTranscript);
-  // //   } catch (error) {
-  // //     console.error("Error fetching transcript:", error);
-  // //     return ""; // Return empty string or handle error case appropriately
-  // //   }
-  // // };
 
   return (
     <>
@@ -337,7 +338,7 @@ const WatchVideoPage = () => {
         </span>
       </div> */}
       <div className="w-full flex flex-col lg:flex-row md:flex-row p-0 bg-[#ffffff] md:bg-[#F7F7F7] lg:bg-[#F7F7F7] ">
-        <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[20px] h-auto md:p-[20px]  ">
+        <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[20px] h-auto md:p-[20px] iframe-container   ">
           <iframe
             ref={firstDivRef}
             className="player  drop-shadow-sm rounded-0  lg:rounded-2xl md:rounded-2xl top-[60px] fixed md:static lg:static border-b border-[#717171] md:border-b-[0] lg:border-b-[0] z-30  "
@@ -416,6 +417,11 @@ const WatchVideoPage = () => {
           />
         </div>
         <div className="flex  lg:flex md:flex w-full lg:w-[calc(30%)]   md:w-[calc(30%)] h-auto mr-[20px]  flex-col items-start  mt-[20px] rounded-xl ">
+          <AiVideoSummary
+            chatModal={chatModal}
+            setChatModal={setChatModal}
+            videoId={searchParams.get("v").split("?plid=")[0]}
+          />
           {searchParams.get("v").split("?plid=").length == 2 ? (
             <>
               <div
@@ -671,7 +677,7 @@ const WatchVideoPage = () => {
           ) : (
             <></>
           )}
-          <AiVideoSummary videoId={searchParams.get("v").split("?plid=")[0]} />
+
           <RelatedVideosContainer tags={tags} chaName={chaName} />
         </div>
 
