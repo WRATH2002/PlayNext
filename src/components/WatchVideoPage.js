@@ -418,6 +418,7 @@ const WatchVideoPage = () => {
         </div>
         <div className="flex  lg:flex md:flex w-full lg:w-[calc(30%)]   md:w-[calc(30%)] h-auto mr-[20px]  flex-col items-start  mt-[20px] rounded-xl ">
           <AiVideoSummary
+            firstDivHeight={firstDivHeight}
             chatModal={chatModal}
             setChatModal={setChatModal}
             videoId={searchParams.get("v").split("?plid=")[0]}

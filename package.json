@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "node-fetch": "^2.6.1",
     "@google/generative-ai": "^0.14.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@tailwindcss/aspect-ratio": "^0.4.2",

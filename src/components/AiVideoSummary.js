@@ -101,11 +101,13 @@ const AiVideoSummary = (props) => {
     setError("");
 
     try {
-      const transcriptData = await YoutubeTranscript.fetchTranscript(
-        // "https://www.youtube.com/watch?v=" +
-        props?.videoId
-        // lang: "hi"
+      const response = await fetch(
+        `https://your-vercel-project-url.vercel.app/api/transcript?videoId=${props?.videoId}`
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch transcript");
+      }
+      const transcriptData = await response.json();
       setTranscript(transcriptData);
 
       console.log(
@@ -773,6 +775,7 @@ const AiVideoSummary = (props) => {
               setLoading(true);
               setSearchFlag(true);
             }
+            fetchTranscript();
             // } else {
             //   if (searchPrompt.length != 0) {
             //     // setSearchFlag(true);
