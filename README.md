@@ -6,6 +6,14 @@ Welcome to PlayyNext, a responsive video platform that offers a rich set of feat
 
 **Note** -> Please enable CORS Extension in Browser to get proper Experience of this website.
 
+# Tech Stack
+
+**React JS:** For building the user interface.<br />
+**Redux Toolkit:** For state management.<br />
+**JavaScript:** For dynamic functionalities.<br />
+**HTML & CSS:** For structuring and styling web pages.<br />
+**Tailwind CSS:** For modern and responsive styling.<br />
+
 # Overview
 
 PlayyNext is built using modern web technologies to deliver a seamless and engaging user experience. The application includes features such as:
@@ -21,27 +29,19 @@ PlayyNext is built using modern web technologies to deliver a seamless and engag
 
 # Features
 
-**Data Fetching from YouTube Real-Time API**Utilizes YouTube API to fetch real-time video data.
+**Data Fetching from YouTube Real-Time API : **Utilizes YouTube API to fetch real-time video data.
 Ensures up-to-date information is displayed.<br />
-**Video Details**Displays essential video details including title, view count, and duration.
+**Video Details : **Displays essential video details including title, view count, and duration.
 Provides a comprehensive overview of each video.<br />
-**Config-Driven UI**Enables dynamic customization of the user interface.
+**Config-Driven UI : **Enables dynamic customization of the user interface.
 Adapts to various user preferences and requirements.<br />
-**Real-Time Comments**Facilitates live commenting on videos.
+**Real-Time Comments : **Facilitates live commenting on videos.
 Enhances user engagement and interaction.<br />
-**Shimmer UI**Uses a loading skeleton to improve user experience during data fetching.
+**Shimmer UI : **Uses a loading skeleton to improve user experience during data fetching.
 Creates a visually appealing placeholder while content loads.<br />
-**Search Functionality**Allows users to search for any video on YouTube.
+**Search Functionality : **Allows users to search for any video on YouTube.
 Provides quick and accurate search results.<br />
-**Related Video Suggestions**isplays videos related to the currently viewed content.
+**Related Video Suggestions : **isplays videos related to the currently viewed content.
 Helps users discover more relevant videos.<br />
-**AI Integration**Users can ask questions related to any video.
+**AI Integration : **Users can ask questions related to any video.
 Provides intelligent responses based on video content.
-
-# Tech Stack
-
-**React JS:** For building the user interface.<br />
-**Redux Toolkit:** For state management.<br />
-**JavaScript:** For dynamic functionalities.<br />
-**HTML & CSS:** For structuring and styling web pages.<br />
-**Tailwind CSS:** For modern and responsive styling.<br />
