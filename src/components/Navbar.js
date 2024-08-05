@@ -280,7 +280,7 @@ const Navbar = () => {
         <>
           <div
             className="h-[60px] w-full flex fixed justify-center items-center   z-2 bg-[#ffffffc9] backdrop-blur-2xl"
-            style={{ zIndex: "2" }}
+            style={{ zIndex: "30" }}
           >
             <div className="h-[40px] flex justify-start items-center w-[60%]  lg:w-[28%] md:w-[28%] z-50 text-[#000000]">
               {sidebarFlag ? (

@@ -188,6 +188,8 @@ const VideoDescription = (props) => {
     //   getSubscribersCount();
     // }
     props?.setChanName(videoInfo?.snippet?.channelTitle);
+    props?.setChannelName(videoInfo?.snippet?.channelTitle);
+    props?.setVideoName(videoInfo?.snippet?.title);
   }, [videoInfo]);
 
   const showMore = () => {

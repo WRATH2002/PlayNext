@@ -47,6 +47,8 @@ const WatchVideoPage = () => {
   const [pos, setPos] = useState(0);
   const [playName, setPlayName] = useState("");
   const [summary, setSummary] = useState("");
+  const [videoName, setVideoName] = useState("");
+  const [channelName, setChannelName] = useState("");
   // const DeepSpeech = require("deepspeech");
   useEffect(() => {
     if (playlistFlag) {
@@ -406,6 +408,8 @@ const WatchVideoPage = () => {
               id={searchParams.get("v").split("?plid=")[0]}
               setChanName={setChanName}
               firstDivHeight={firstDivHeight}
+              setVideoName={setVideoName}
+              setChannelName={setChannelName}
             />
           </div>
           <Comments
@@ -418,6 +422,8 @@ const WatchVideoPage = () => {
         </div>
         <div className="flex  lg:flex md:flex w-full lg:w-[calc(30%)]   md:w-[calc(30%)] h-auto mr-[20px]  flex-col items-start  mt-[20px] rounded-xl ">
           <AiVideoSummary
+            channelName={channelName}
+            videoName={videoName}
             firstDivHeight={firstDivHeight}
             chatModal={chatModal}
             setChatModal={setChatModal}

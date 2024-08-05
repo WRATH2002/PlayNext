@@ -20,8 +20,12 @@
   src: url(./assets/font/Satoshi-Medium.otf);
 }
 @font-face {
-  font-family: kenya;
-  src: url(./assets/font/kenyan\ coffee\ rg.otf);
+  font-family: test;
+  src: url(./assets/font/Diavlo_MEDIUM_II_37.otf);
+}
+@font-face {
+  font-family: sign;
+  src: url(./assets/font/Dollamin-1GlzL.ttf);
 }
 
 #blurred {

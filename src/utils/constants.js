@@ -238,7 +238,7 @@ export const COMMENTS_API =
 //snippet%2Creplies
 
 export const SEARCH_TEXT_API =
-  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&key=" +
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&regionCode=US&key=" +
   API_KEY +
   "&q=";
 
