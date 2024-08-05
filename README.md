@@ -2,7 +2,7 @@
 
 Welcome to PlayyNext, a responsive video platform that offers a rich set of features and functionalities. You can check out the project here.
 
-**Live Demo** -> https://playynext.netlify.app/
+**Live Demo** -> https://playnextio.vercel.app/
 
 **Note** -> Please enable CORS Extension in Browser to get proper Experience of this website.
 
