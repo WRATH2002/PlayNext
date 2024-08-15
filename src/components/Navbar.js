@@ -449,18 +449,18 @@ const Navbar = () => {
         {sidebarFlag === false ? (
           <>
             <div
-              className="fixed h-[calc(100dvh-60px)] left-0 md:w-[230px] lg:w-[230px] ml-[-50%] md:ml-[-230px] lg:ml-[-230px] flex-shrink-0 flex flex-col items-center p-[0px] md:p-[20px]  bg-transparent lg:p-[20px] pr-0  text-[black] z-50 overflow-hidden"
-              style={{ transition: ".3s" }}
+              className="fixed h-[calc(100dvh-60px)] left-0 md:w-[230px] lg:w-[230px] ml-[-50%] md:ml-[-230px] lg:ml-[-230px] flex-shrink-0 flex flex-col items-center p-[0px] md:p-[20px]  bg-transparent lg:p-[20px] pr-0  text-[black] z-[230px] overflow-hidden"
+              style={{ transition: ".3s", zIndex: "250" }}
             >
               <div className="w-full h-full rounded-none md:rounded-2xl lg:rounded-2xl bg-white border border-[#eeeeee] flex flex-col justify-start items-start p-[20px] drop-shadow-sm">
-                <div className="w-full h-full overflow-y-scroll flex flex-col justify-start items-start">
+                <div className="w-full h-full overflow-y-scroll flex flex-col justify-start items-start z-[230px]">
                   <Sidebar />
                 </div>
               </div>
             </div>
             <div
               className=" h-[calc(100dvh-60px)] w-[230px] ml-[-230px] flex-shrink-0 flex flex-col items-center pt-[20px] border-none  bg-transparent p-[20px] pr-0  text-[black] z-50"
-              style={{ transition: ".3s" }}
+              style={{ transition: ".3s", zIndex: "250" }}
             ></div>
             {/* <div
               className="h-[calc(100vh-60px)] w-0 flex-shrink-0 fixed lg:relative md:relative bg-transparent text-[black]"
@@ -470,12 +470,12 @@ const Navbar = () => {
         ) : (
           <>
             <div
-              className="fixed h-[calc(100dvh-60px)] w-[60%] left-0 md:w-[230px] lg:w-[230px] flex-shrink-0 flex flex-col items-center p-0 md:p-[20px] lg:p-[20px]   bg-transparent  pr-0 md:pr-[0px] lg:pr-[0px]  text-[black] z-50 font-[roboto] font-semibold"
+              className="fixed h-[calc(100dvh-60px)] w-[60%] left-0 md:w-[230px] lg:w-[230px] flex-shrink-0 flex flex-col items-center p-0 md:p-[20px] lg:p-[20px]   bg-transparent  pr-0 md:pr-[0px] lg:pr-[0px]  text-[black] z-[230px] font-[roboto] font-semibold"
               style={{ transition: ".3s", zIndex: "100" }}
             >
               <div className="w-full h-full rounded-none md:rounded-2xl lg:rounded-2xl bg-white border-[0px] md:border lg:border border-[#eeeeee] flex flex-col justify-start items-start p-[20px] drop-shadow-sm">
                 <div className="w-full h-full overflow-y-scroll flex flex-col justify-start items-start">
-                  <div className="w-full h-full flex flex-col justify-start items-start">
+                  <div className="w-full h-full flex flex-col justify-start items-start z-[230px]">
                     <Sidebar />
                   </div>
                 </div>

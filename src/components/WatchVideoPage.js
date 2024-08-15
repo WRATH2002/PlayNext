@@ -343,7 +343,7 @@ const WatchVideoPage = () => {
         <div className="w-full lg:w-[70%] md:w-[70%] p-0 lg:p-[20px] h-auto md:p-[20px] iframe-container   ">
           <iframe
             ref={firstDivRef}
-            className="player  drop-shadow-sm rounded-0  lg:rounded-2xl md:rounded-2xl top-[60px] fixed md:static lg:static border-b border-[#717171] md:border-b-[0] lg:border-b-[0] z-30  "
+            className="player  drop-shadow-sm rounded-0  lg:rounded-2xl md:rounded-2xl top-[60px] fixed md:static lg:static border-b border-[#717171] md:border-b-[0] lg:border-b-[0] z-[70]  "
             controls
             autoPlay
             // width="560"
@@ -433,7 +433,7 @@ const WatchVideoPage = () => {
             <>
               <div
                 ref={secondDivRef}
-                className="w-full rounded-2xl bg-[#ffffff] hidden md:flex lg:flex flex-col justify-start items-start p-[10px] py-[20px] drop-shadow-sm mb-[10px]"
+                className="w-full rounded-2xl bg-[#ffffff] hidden md:flex lg:flex flex-col justify-start items-start p-[10px] py-[20px] drop-shadow-sm mb-[10px] z-50"
                 style={{ transition: ".4s" }}
               >
                 <div className="w-full h-[40px] flex flex-row justify-between items-center px-[10px]">

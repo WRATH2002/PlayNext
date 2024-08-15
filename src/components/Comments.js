@@ -119,8 +119,8 @@ const Comment = ({ comment }) => {
             <></>
           )} */}
         {/* </div> */}
-        <div className="flex flex-col w-full  ml-[25px] text-[13px] lg:text-[15px] md:text-[15px] text-[black] font-[roboto]">
-          <span className="flex items-center justify-start font-[400] text-[13px] h-[20px] text-[#6F6F6F] ">
+        <div className="flex flex-col w-[calc(100%-61px)]  ml-[25px] text-[13px] lg:text-[15px] md:text-[15px] text-[black] font-[roboto]">
+          <span className="flex items-center justify-start font-[400] text-[13px] h-[20px] text-[#6F6F6F] w-full">
             {comment?.snippet?.topLevelComment?.snippet?.authorDisplayName}
             <span className="mx-[4px]">•</span>
             <span className="text-[12px]">
@@ -155,7 +155,7 @@ const Comment = ({ comment }) => {
               )}
             </span>
           </span>
-          <span className=" leading-[18px] font-sans flex flex-wrap text-[14px]">
+          <span className=" leading-[18px] font-sans flex flex-wrap overflow-x-hidden text-[14px] w-full break-words">
             {comment?.snippet?.topLevelComment?.snippet?.textOriginal}
           </span>
           <div className="flex justify-start items-center my-[7px]">
