@@ -25,7 +25,7 @@ import "prismjs/components/prism-python";
 import "prismjs/components/prism-ruby";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-css";
-import "prismjs/themes/prism-vsc-dark-plus.css";
+import "../assets/style/prism-vsc-dark-plus.css";
 const AiVideoSummary = (props) => {
   // const { translate } = require("free-translate");
   // const translate = require("translate-google");
