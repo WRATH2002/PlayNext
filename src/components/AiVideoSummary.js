@@ -15,7 +15,17 @@ import { AssemblyAI } from "assemblyai";
 import { RxCross2 } from "react-icons/rx";
 import { IoArrowUp } from "react-icons/io5";
 import { Sparkle } from "lucide";
-
+import Prism from "prismjs";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-css";
+import "prismjs/components/prism-markup";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-ruby";
+import "prismjs/components/prism-java";
+import "prismjs/components/prism-css";
+import "prismjs/themes/prism-vsc-dark-plus.css";
 const AiVideoSummary = (props) => {
   // const { translate } = require("free-translate");
   // const translate = require("translate-google");
@@ -351,91 +361,59 @@ const AiVideoSummary = (props) => {
   }
 
   function formatText(text) {
-    // Escape only code blocks and inline code
-    text = text.replace(
-      /```(.*?)```/gs,
-      (match, p1) =>
-        `<div style="width: 100%; height: auto; padding: 15px; background-color: gray; whitespace-prewrap ;background-color: #1b1b1b;
-    color: white; overflow-x:scroll; border-radius: 16px;"><pre><code>${escapeHtml(
-      p1
-    )}</code></pre></div>`
-    );
-    text = text.replace(
-      /`([^`]+)`/g,
-      (match, p1) => `<code>${escapeHtml(p1)}</code>`
-    );
-
-    // Replace **text** with <b>text</b>
-    text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
-
-    // Replace * with • if it's a single asterisk
-    text = text.replace(/\*(?!\*|$)/g, "•");
-
-    // Replace ##text with <b>text</b>
-    text = text.replace(/##(.*?)(?=\n|$)/g, "<b>$1</b>");
-
-    // Replace URLs with anchor tags
-    text = text.replace(
-      /(https:\/\/[^\s]+)/g,
-      '<a href="$1" class="bold" target="_blank">$1</a>'
-    );
-
-    return text;
-  }
-
-  function escapeHtml(text) {
-    const map = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;",
-    };
-    return text.replace(/[&<>"']/g, function (m) {
-      return map[m];
-    });
-  }
-
-  function formatText(text) {
-    // Escape only code blocks and inline code
-
     text = text.replace(/```(.*?)```/gs, (match, p1) => {
       if (p1.trim() === "") {
         return "";
       }
-      const language = p1.trim().split("\n")[0];
-      const code = p1.trim().slice(language.length).trim();
+
+      const lines = p1.trim().split("\n");
+      const language = lines[0].trim().toLowerCase(); // Lowercase for consistency
+      const codeLines = lines.slice(1);
+
+      // Determine minimum indentation
+      const minIndentation = Math.min(
+        ...codeLines
+          .filter((line) => line.trim() !== "")
+          .map((line) => {
+            const match = line.match(/^\s*/);
+            return match ? match[0].length : 0;
+          })
+      );
+
+      // Remove minimum indentation
+      const code = codeLines
+        .map((line) => line.slice(minIndentation))
+        .join("\n");
+
       return `
-      <div style="width: 100%; height: auto;  whitespace-prewrap ;background-color: #2e2e2e;
-    color: white; border-radius: 16px; display:flex ; flex-direction: column ; justify-content:start; align-items:start">
-        <div style="width: 100%; height: 40px;  background-color: #000000; 
-    color: white ; display:flex  ; justify-content:space-between; align-items:center; padding: 0px 15px ; border-radius: 16px 16px 0px 0px ">
+      <div style="width: 100%; height: auto; white-space: pre-wrap; background-color: #1e1e1e; color: white; border-radius: 16px; display: flex; flex-direction: column; justify-content: start; align-items: start;    padding: 0px 0px 15px 0px;">
+        <div style="width: 100%; height: 40px; background-color: #000000; color: white; display: flex; justify-content: space-between; align-items: center; padding: 0px 15px; border-radius: 16px 16px 0px 0px">
           <span style="color: #acacac">${language}</span>
-          <button style="width: auto; height: auto;whitespace-nowrap ;
-    color: white; " >copy</button>
+          <button style="width: auto; height: auto; white-space: nowrap; color: white;">copy</button>
         </div>
-        <pre style="padding: 15px; width: 100% ;  overflow-x:scroll "><code>${escapeHtml(
-          code
-        )}</code></pre>
+        <pre style="padding: 15px; width: 100%; overflow-x: scroll"><code class="language-${language}">${escapeHtml(
+        code
+      )}</code></pre>
       </div>
     `;
     });
 
+    // Inline code formatting
     text = text.replace(
       /`([^`]+)`/g,
       (match, p1) => `<code>${escapeHtml(p1)}</code>`
     );
 
-    // Replace **text** with <b>text</b>
+    // Bold text formatting
     text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
 
-    // Replace * with • if it's a single asterisk
+    // Bullet point replacement
     text = text.replace(/\*(?!\*|$)/g, "•");
 
-    // Replace ##text with <b>text</b>
+    // Header formatting
     text = text.replace(/##(.*?)(?=\n|$)/g, "<b>$1</b>");
 
-    // Replace URLs with anchor tags
+    // URL formatting
     text = text.replace(
       /(https:\/\/[^\s]+)/g,
       '<a href="$1" class="bold" target="_blank">$1</a>'
@@ -443,6 +421,10 @@ const AiVideoSummary = (props) => {
 
     return text;
   }
+
+  useEffect(() => {
+    Prism.highlightAll();
+  });
 
   // function copyToClipboard(button) {
   //   const codeElement =
