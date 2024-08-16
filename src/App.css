@@ -37,30 +37,12 @@
 }
 
 .gradAi {
-  background-image: linear-gradient(
-    130deg,
-    hsl(49deg 100% 69%) 0%,
-    hsl(39deg 100% 66%) 5%,
-    hsl(29deg 95% 64%) 10%,
-    hsl(19deg 84% 61%) 15%,
-    hsl(8deg 70% 59%) 20%,
-    hsl(353deg 57% 53%) 25%,
-    hsl(339deg 66% 42%) 30%,
-    hsl(325deg 92% 30%) 35%,
-    hsl(313deg 100% 22%) 40%,
-    hsl(292deg 100% 17%) 45%,
-    hsl(259deg 100% 15%) 50%,
-    hsl(226deg 100% 19%) 55%,
-    hsl(219deg 100% 22%) 60%,
-    hsl(213deg 100% 24%) 65%,
-    hsl(209deg 100% 26%) 70%,
-    hsl(204deg 100% 28%) 75%,
-    hsl(200deg 100% 29%) 80%,
-    hsl(196deg 100% 30%) 85%,
-    hsl(191deg 100% 31%) 90%,
-    hsl(187deg 100% 32%) 95%,
-    hsl(183deg 79% 36%) 100%
-  );
+  /*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=298bd4&c2=58356e&gt=l&gd=dtl
+*/
+  background: #298bd4;
+  background: linear-gradient(135deg, #298bd4, #58356e);
 }
 
 #blurred {
