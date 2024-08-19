@@ -618,8 +618,8 @@ const AiVideoSummary = (props) => {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
+                      width="18"
+                      height="18"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -664,14 +664,28 @@ const AiVideoSummary = (props) => {
 
                 <div
                   className={
-                    "w-[35px] h-[35px] flex justify-end items-center text-[18px] cursor-pointer rounded-full hover:text-[black]" +
+                    "w-[35px] h-[35px] pt-[2px] flex justify-end items-center text-[18px] cursor-pointer rounded-full hover:text-[black]" +
                     (TranSec ? " text-[black]" : " text-[#727272]")
                   }
                   onClick={() => {
                     setTranSec(!TranSec);
                   }}
                 >
-                  <MdSubtitles />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-captions"
+                  >
+                    <rect width="18" height="14" x="3" y="5" rx="2" ry="2" />
+                    <path d="M7 15h4M15 15h2M7 11h2M13 11h4" />
+                  </svg>
                 </div>
                 <div
                   className={
@@ -687,7 +701,22 @@ const AiVideoSummary = (props) => {
                     setChatHistory([]);
                   }}
                 >
-                  <AiFillDelete />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-trash"
+                  >
+                    <path d="M3 6h18" />
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                  </svg>
                 </div>
               </div>
               <div
