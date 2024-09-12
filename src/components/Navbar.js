@@ -128,7 +128,7 @@ const Navbar = () => {
     <>
       {pSearch === true && phone === true ? (
         <>
-          <div className="w-full h-[100svh] bg-[#f7f7f7] fixed z-50 pt-[15px]">
+          <div className="w-full h-[100dvh] bg-[#f7f7f7] fixed z-[100] pt-[15px]">
             <div className="w-full h-[45px] flex justify-center items-center mb-[10px] px-[10px]">
               <div
                 className="w-[30px] h-[45px] rounded-full flex justify-center items-center mr-[10px] "

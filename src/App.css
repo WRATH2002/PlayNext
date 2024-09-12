@@ -36,6 +36,11 @@
   src: url(./assets/font/Marmelat\ Book.otf);
 }
 
+@font-face {
+  font-family: kenya;
+  src: url(./assets/font/kenyan\ coffee\ rg.otf);
+}
+
 .gradAi {
   /*
 * Created with https://www.css-gradient.com
