@@ -14,7 +14,7 @@ import { RiMic2Fill, RiMicFill } from "react-icons/ri";
 import { AssemblyAI } from "assemblyai";
 import { RxCross2 } from "react-icons/rx";
 import { IoArrowUp } from "react-icons/io5";
-import { Sparkle } from "lucide";
+import { Blocks, Sparkle } from "lucide";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-javascript";
@@ -208,7 +208,7 @@ const AiVideoSummary = (props) => {
   const genAI = new GoogleGenerativeAI(GEM_API_KEY);
 
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
+    model: "gemini-2.0-flash",
   });
 
   const generationConfig = {
@@ -524,26 +524,46 @@ const AiVideoSummary = (props) => {
     <>
       {alertModal ? (
         <div
-          className="w-[420px] fixed top-[10px] right-[20px] h-[50px] rounded-2xl justify-center items-center bg-[black] text-white z-50 hidden md:flex lg:flex"
+          className="w-[420px] fixed top-[10px] right-[30px] h-auto rounded-xl p-[20px] justify-center items-center bg-[#F0F4F9] text-[black] z-[500] font-[book] font-semibold hidden md:flex lg:flex"
           style={{ transition: ".4s" }}
         >
           <span
-            className=""
+            className="w-full flex flex-col justify-center items-start"
             style={{ transition: ".3s", transitionDelay: ".3s" }}
           >
-            Please enable CORS Entension for better experience
+            {/* <Blocks
+              width={18}
+              height={18}
+              strokeWidth={1.7}
+              className="mr-[5px]"
+            />{" "} */}
+            Enable CORS Entension
+            <span className="w-full font-normal leading-5 text-[15px] mt-[10px]">
+              To ask anything related to video, enable CORS extension for better
+              experience
+            </span>
           </span>
         </div>
       ) : (
         <div
-          className="w-[420px] fixed top-[10px] right-[-420px] h-[50px] rounded-2xl justify-center items-center bg-[black]  z-50 hidden md:flex lg:flex"
+          className="w-[420px] fixed top-[10px] right-[-420px] h-[50px] rounded-2xl justify-center items-center bg-[#F0F4F9]  z-50 hidden md:flex lg:flex"
           style={{ transition: ".4s" }}
         >
           <span
-            className=""
-            // style={{transition:'.3s', transitionDelay:".3s"}}
+            className="w-full flex flex-col justify-center items-start"
+            // style={{ transition: ".3s", transitionDelay: ".3s" }}
           >
-            Please enable CORS Entension for better experience
+            {/* <Blocks
+              width={18}
+              height={18}
+              strokeWidth={1.7}
+              className="mr-[5px]"
+            />{" "} */}
+            Enable CORS Entension
+            <span className="w-full font-normal leading-5 text-[15px] mt-[10px]">
+              To ask anything related to video, enable CORS extension for better
+              experience
+            </span>
           </span>
         </div>
       )}

@@ -1,4 +1,39 @@
-# PlayyNext
+# PlayNext – Your AI-Powered Video Experience!
+
+**PlayNext** is a next-generation video platform designed to elevate the way you discover, watch, and interact with content. With real-time data fetching, a dynamic UI, and AI-driven insights, PlayNext transforms passive viewing into an engaging and interactive experience.
+
+# ⭐ What Makes PlayNext Stand Out?
+
+**• Data Fetching from YouTube Real-Time API -** Retrieves the latest video data.
+**• Video Details -** Displays video titles, views, and durations.
+**• Config-Driven UI -** Allows dynamic UI configurations.
+**• Real-Time Comments -** Facilitates live comment interactions.
+**• Shimmer UI -** Provides a loading skeleton for video pages.
+**• Search Functionality -** Enables searching for any video.
+**• Related Video Suggestions -** Shows videos related to the currently viewed content.
+**• AI Integration -** Allows users to ask questions related to any video and get answers.
+
+# 🎯 The Problem It Solves
+
+Traditional video platforms often focus solely on passive viewing, limiting engagement and discoverability. PlayNext enhances the experience by:
+
+**• Making video discovery smarter -** AI-driven recommendations ensure you always find relevant content.
+**• Providing real-time engagement -** Viewers can interact with AI and ask anything related video for deeper insights.
+**• Easy Navigation -** Navigation between video and AI Chat is easy making it a smooth experience.
+
+# ⚙️ Tech Stack
+
+**• Frontend -** ReactJS, JavaScript, HTML, CSS, Tailwind
+**• Backend -** YouTube API, AI Integration (Gemini API)
+**• Hosting -** Vercel
+
+# 📌 Try It Out!
+
+**Live Demo** -> https://playnextio.vercel.app/
+
+Would love to hear your thoughts! Let’s redefine video discovery together. 🎥✨
+
+<!-- # PlayyNext
 
 Welcome to PlayyNext, a responsive video platform that offers a rich set of features and functionalities. You can check out the project here.
 
@@ -44,4 +79,4 @@ Provides quick and accurate search results.<br />
 **Related Video Suggestions : **isplays videos related to the currently viewed content.
 Helps users discover more relevant videos.<br />
 **AI Integration : **Users can ask questions related to any video.
-Provides intelligent responses based on video content.
+Provides intelligent responses based on video content. -->
