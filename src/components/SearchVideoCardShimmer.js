@@ -4,10 +4,10 @@ const SearchVideoCardShimmer = () => {
   return (
     <>
       <div className="w-full h-auto  text-white  hidden md:flex lg:flex mb-[17px] font-[roboto] ">
-        <div className="min-w-[350px] rounded-[10px] flex justify-center items-center ">
-          <div className="player w-[350px] rounded-2xl bg-[#f3f3f3] animate-pulse"></div>
+        <div className="min-w-[400px] rounded-[10px] flex justify-center items-center ">
+          <div className="player w-[400px] rounded-2xl bg-[#f3f3f3] animate-pulse"></div>
         </div>
-        <div className="w-[calc(100%-370px)] flex flex-col justify-start items-start ml-[20px]">
+        <div className="w-[calc(100%-420px)] flex flex-col justify-start items-start ml-[20px]">
           <div className="min-w-[500px] rounded-md min-h-[27px] bg-[#f3f3f3] animate-pulse"></div>
           <div className="min-w-[300px] rounded-md min-h-[18px] bg-[#f3f3f3] animate-pulse mt-[10px] "></div>
           {/* <span>ssGFRbS</span> */}

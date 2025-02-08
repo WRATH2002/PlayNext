@@ -154,7 +154,7 @@ const SearchVideosCard = (props) => {
   return (
     <>
       <div className="w-full h-auto  text-black  hidden md:flex lg:flex mb-[17px] font-[roboto] ">
-        <div className="min-w-[350px] rounded-[10px] flex justify-center items-center ">
+        <div className="min-w-[400px] max-w-[400px] rounded-[10px] flex justify-center items-center ">
           <img
             className="player object-cover rounded-[10px] "
             src={props?.data?.snippet?.thumbnails?.high?.url}
@@ -170,7 +170,7 @@ const SearchVideosCard = (props) => {
             {duration}
           </span>
         </span> */}
-        <div className="w-[calc(100%-370px)] flex flex-col justify-start items-start ml-[20px]">
+        <div className="w-[calc(100%-420px)] flex flex-col justify-start items-start ml-[20px]">
           <div className="w-[calc(100%)] min-h-[27px] max-h-[55px] text-[18px] overflow-hidden text-ellipsis line-clamp-2 font-semibold">
             {props.data.snippet.title}
             {/* {duration} */}
